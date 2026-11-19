@@ -1,0 +1,51 @@
+# ==============================================================================
+# .gitignore — EletroLar Varejo (Case 3 — Pós-Venda Amazon Connect)
+# Governança DevSecOps Zero-Leak
+# ==============================================================================
+
+# Segredos, variáveis locais e snippets reais do Amazon Connect
+.env
+.env.*
+!.env.example
+*.local.*
+landing/widget-snippet.local.html
+landing/connect-widget-loader.js
+landing/dist/
+
+# Credenciais e chaves privadas
+*.pem
+*.key
+*.p12
+*.pfx
+credentials
+credentials.csv
+*accesskeys*.csv
+.aws/
+.vercel/
+
+# Ambiente Python, caches e cobertura de testes
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Pacotes de deploy gerados localmente e materiais internos com direitos autorais
+*.zip
+*.pdf
+Case_3_Varejo_Chat_Online.pdf
+
+# Arquivos de sistema operacional e IDEs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

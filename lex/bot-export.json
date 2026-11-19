@@ -1,0 +1,285 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "botName": "PV-EletroLar-Bot",
+    "botId": "<LEX_BOT_ID>",
+    "botAlias": "Prod",
+    "botAliasId": "<LEX_BOT_ALIAS_ID>",
+    "localeId": "pt_BR",
+    "voiceSettings": {
+      "voiceId": "Camila",
+      "engine": "neural"
+    },
+    "nluConfidenceThreshold": 0.4,
+    "idleSessionTTLInSeconds": 300,
+    "lambdaFulfillmentArn": "arn:aws:lambda:us-west-2:000000000000:function:PV-PosVendaFulfillment"
+  },
+  "intents": [
+    {
+      "name": "AcionarGarantiaDefeito",
+      "description": "Cenário 1 do PDF: Cliente reporta defeito no eletrodoméstico (ex.: máquina de lavar parou de funcionar). Coleta modelo, número de série e nota fiscal e aciona a garantia automaticamente.",
+      "dialogCodeHook": { "enabled": true },
+      "fulfillmentCodeHook": { "enabled": true },
+      "sampleUtterances": [
+        { "utterance": "minha máquina de lavar parou de funcionar" },
+        { "utterance": "a lavadora parou de funcionar e quero acionar a garantia" },
+        { "utterance": "meu produto está com defeito" },
+        { "utterance": "quero acionar a garantia do meu eletrodoméstico" },
+        { "utterance": "minha geladeira não está gelando" },
+        { "utterance": "meu micro-ondas não esquenta mais" },
+        { "utterance": "a máquina de lavar {ModeloProduto} parou de funcionar" },
+        { "utterance": "acionar garantia da nota fiscal {NumeroNotaFiscal}" },
+        { "utterance": "defeito no produto {ModeloProduto} série {NumeroSerie} nota {NumeroNotaFiscal}" },
+        { "utterance": "minha lava e seca apresentou erro no painel" },
+        { "utterance": "preciso de conserto na garantia para {ModeloProduto}" }
+      ],
+      "slots": [
+        {
+          "name": "ModeloProduto",
+          "slotTypeName": "AMAZON.FreeFormInput",
+          "valueElicitationSetting": {
+            "slotConstraint": "Required",
+            "promptSpecification": {
+              "maxRetries": 2,
+              "messageGroups": [
+                {
+                  "message": {
+                    "plainTextMessage": {
+                      "value": "Qual é o modelo ou tipo do eletrodoméstico que apresentou defeito (ex.: Lavadora 12kg, Geladeira FrostFree ou Micro-ondas 32L)?"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "NumeroSerie",
+          "slotTypeName": "AMAZON.AlphaNumeric",
+          "valueElicitationSetting": {
+            "slotConstraint": "Required",
+            "promptSpecification": {
+              "maxRetries": 2,
+              "messageGroups": [
+                {
+                  "message": {
+                    "plainTextMessage": {
+                      "value": "Informe o número de série do aparelho (ex.: EL-LAV-2026-8841), localizado na etiqueta traseira ou interna."
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "NumeroNotaFiscal",
+          "slotTypeName": "AMAZON.AlphaNumeric",
+          "valueElicitationSetting": {
+            "slotConstraint": "Required",
+            "promptSpecification": {
+              "maxRetries": 2,
+              "messageGroups": [
+                {
+                  "message": {
+                    "plainTextMessage": {
+                      "value": "Qual é o número da sua Nota Fiscal de compra (ex.: NF-100201)?"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "DescricaoDefeito",
+          "slotTypeName": "AMAZON.FreeFormInput",
+          "valueElicitationSetting": {
+            "slotConstraint": "Required",
+            "promptSpecification": {
+              "maxRetries": 2,
+              "messageGroups": [
+                {
+                  "message": {
+                    "plainTextMessage": {
+                      "value": "Pode descrever brevemente o defeito apresentado pelo aparelho (ex.: parou de funcionar, não centrifuga, não gela)?"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "slotPriorities": [
+        { "priority": 1, "slotName": "ModeloProduto" },
+        { "priority": 2, "slotName": "NumeroSerie" },
+        { "priority": 3, "slotName": "NumeroNotaFiscal" },
+        { "priority": 4, "slotName": "DescricaoDefeito" }
+      ]
+    },
+    {
+      "name": "LocalizarAssistenciaTecnica",
+      "description": "Cenário 2 do PDF: Consulta o DynamoDB por CEP ou cidade e retorna a assistência técnica autorizada mais próxima com endereço, telefone e horário de atendimento.",
+      "dialogCodeHook": { "enabled": true },
+      "fulfillmentCodeHook": { "enabled": true },
+      "sampleUtterances": [
+        { "utterance": "quero localizar uma assistência técnica autorizada" },
+        { "utterance": "qual a assistência técnica mais próxima de mim" },
+        { "utterance": "buscar assistência autorizada no cep {CepOuCidade}" },
+        { "utterance": "assistência técnica em {CepOuCidade}" },
+        { "utterance": "onde tem autorizada para {CategoriaProduto} em {CepOuCidade}" },
+        { "utterance": "endereço e telefone da assistência em {CepOuCidade}" },
+        { "utterance": "posto autorizado perto do meu cep" },
+        { "utterance": "quero assistência técnica para minha máquina de lavar" },
+        { "utterance": "procurar autorizada EletroLar na minha cidade" }
+      ],
+      "slots": [
+        {
+          "name": "CepOuCidade",
+          "slotTypeName": "AMAZON.FreeFormInput",
+          "valueElicitationSetting": {
+            "slotConstraint": "Required",
+            "promptSpecification": {
+              "maxRetries": 2,
+              "messageGroups": [
+                {
+                  "message": {
+                    "plainTextMessage": {
+                      "value": "Por favor, informe o seu CEP (8 dígitos) ou o nome da sua cidade para eu localizar a assistência técnica autorizada mais próxima."
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "CategoriaProduto",
+          "slotTypeName": "PV_CategoriaEletrodomestico",
+          "valueElicitationSetting": {
+            "slotConstraint": "Optional",
+            "promptSpecification": {
+              "maxRetries": 1,
+              "messageGroups": [
+                {
+                  "message": {
+                    "plainTextMessage": {
+                      "value": "Para qual linha de produto você busca assistência (Lavadora, Geladeira, Micro-ondas, Fogão ou Ar-Condicionado)?"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "slotPriorities": [
+        { "priority": 1, "slotName": "CepOuCidade" },
+        { "priority": 2, "slotName": "CategoriaProduto" }
+      ]
+    },
+    {
+      "name": "SolicitarTrocaDevolucao",
+      "description": "Cenário 3 do PDF: Inicia o processo de troca ou devolução, coleta nota fiscal, modelo e motivo, cria o caso e envia o protocolo por chat online.",
+      "dialogCodeHook": { "enabled": true },
+      "fulfillmentCodeHook": { "enabled": true },
+      "sampleUtterances": [
+        { "utterance": "quero trocar meu produto" },
+        { "utterance": "preciso devolver um eletrodoméstico que comprei" },
+        { "utterance": "solicitar troca ou devolução" },
+        { "utterance": "quero devolver o produto da nota {NumeroNotaFiscal}" },
+        { "utterance": "trocar {ModeloProduto} da nota fiscal {NumeroNotaFiscal}" },
+        { "utterance": "meu produto chegou amassado e quero trocar" },
+        { "utterance": "direito de arrependimento 7 dias quero devolver" },
+        { "utterance": "iniciar processo de devolução no chat" }
+      ],
+      "slots": [
+        {
+          "name": "NumeroNotaFiscal",
+          "slotTypeName": "AMAZON.AlphaNumeric",
+          "valueElicitationSetting": {
+            "slotConstraint": "Required",
+            "promptSpecification": {
+              "maxRetries": 2,
+              "messageGroups": [
+                {
+                  "message": {
+                    "plainTextMessage": {
+                      "value": "Para iniciar a troca ou devolução, informe o número da sua Nota Fiscal (ex.: NF-100203)."
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "ModeloProduto",
+          "slotTypeName": "AMAZON.FreeFormInput",
+          "valueElicitationSetting": {
+            "slotConstraint": "Required",
+            "promptSpecification": {
+              "maxRetries": 2,
+              "messageGroups": [
+                {
+                  "message": {
+                    "plainTextMessage": {
+                      "value": "Qual é o modelo do eletrodoméstico que deseja trocar ou devolver?"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "MotivoSolicitacao",
+          "slotTypeName": "PV_MotivoTrocaDevolucao",
+          "valueElicitationSetting": {
+            "slotConstraint": "Required",
+            "promptSpecification": {
+              "maxRetries": 2,
+              "messageGroups": [
+                {
+                  "message": {
+                    "plainTextMessage": {
+                      "value": "Qual é o motivo da solicitação (ex.: arrependimento em até 7 dias, produto avariado na entrega ou defeito)?"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "slotPriorities": [
+        { "priority": 1, "slotName": "NumeroNotaFiscal" },
+        { "priority": 2, "slotName": "ModeloProduto" },
+        { "priority": 3, "slotName": "MotivoSolicitacao" }
+      ]
+    },
+    {
+      "name": "FalarComAtendente",
+      "description": "Cenário 4 do PDF: Transfere imediatamente para um agente humano no Agent Workspace preservando todo o contexto coletado.",
+      "dialogCodeHook": { "enabled": false },
+      "fulfillmentCodeHook": { "enabled": true },
+      "sampleUtterances": [
+        { "utterance": "quero falar com um atendente" },
+        { "utterance": "falar com humano" },
+        { "utterance": "transferir para especialista" },
+        { "utterance": "atendente humano por favor" },
+        { "utterance": "preciso falar com uma pessoa" },
+        { "utterance": "o bot não resolveu meu problema" }
+      ],
+      "slots": []
+    },
+    {
+      "name": "FallbackIntent",
+      "description": "Intenção padrão acionada quando a frase não atinge o limiar NLU (0.40).",
+      "parentIntentSignature": "AMAZON.FallbackIntent",
+      "dialogCodeHook": { "enabled": false },
+      "fulfillmentCodeHook": { "enabled": true }
+    }
+  ]
+}

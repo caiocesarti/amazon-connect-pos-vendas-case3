@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="100%" height="auto" role="img" aria-labelledby="title desc">
+  <title id="title">Arquitetura AWS — EletroLar Varejo Pós-Venda Omnichannel (Case 3)</title>
+  <desc id="desc">Diagrama de arquitetura AWS integrando Portal Web Vercel, Amazon Connect, Amazon Lex V2 (pt-BR Camila Neural), AWS Lambda Python 3.12, Amazon DynamoDB (PV-AssistenciasGarantia), Amazon Q in Connect (Wisdom + S3) e Agent Workspace CCP v2.</desc>
+
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07120F" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="awsOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9900" />
+      <stop offset="100%" stop-color="#EC7211" />
+    </linearGradient>
+    <linearGradient id="awsTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+    <linearGradient id="awsPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#6D28D9" />
+    </linearGradient>
+    <linearGradient id="awsGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="awsBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38BDF8" />
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#F59E0B" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#34D399" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="680" rx="16" fill="url(#bgGrad)" />
+  <g opacity="0.06" stroke="#94A3B8" stroke-width="1">
+    <path d="M0 100 H1200 M0 200 H1200 M0 300 H1200 M0 400 H1200 M0 500 H1200 M0 600 H1200" />
+    <path d="M150 0 V680 M300 0 V680 M450 0 V680 M600 0 V680 M750 0 V680 M900 0 V680 M1050 0 V680" />
+  </g>
+
+  <!-- Header -->
+  <text x="36" y="44" fill="#F8FAFC" font-family="Inter, Segoe UI, sans-serif" font-size="22" font-weight="700">
+    EletroLar Varejo (Case 3) — Arquitetura Omnichannel de Pós-Venda na AWS
+  </text>
+  <text x="36" y="68" fill="#94A3B8" font-family="Inter, Segoe UI, sans-serif" font-size="13">
+    Amazon Connect (Chat Online + Voz Camila Neural pt-BR) · Amazon Lex V2 · AWS Lambda Python 3.12 · Amazon DynamoDB · Amazon Q in Connect · CCP v2
+  </text>
+
+  <!-- AWS Cloud Boundary -->
+  <rect x="290" y="94" width="880" height="552" rx="14" fill="rgba(15, 23, 42, 0.55)" stroke="#FF9900" stroke-width="1.8" stroke-dasharray="8 6" />
+  <rect x="308" y="82" width="185" height="24" rx="6" fill="#1E293B" stroke="#FF9900" stroke-width="1.2" />
+  <text x="322" y="98" fill="#FBBF24" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700">
+    AWS Cloud (us-west-2 • Oregon)
+  </text>
+
+  <!-- ZONE: Client & Edge (Left) -->
+  <rect x="30" y="94" width="230" height="552" rx="14" fill="rgba(30, 41, 59, 0.35)" stroke="#334155" stroke-width="1.4" />
+  <text x="48" y="120" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" letter-spacing="0.05em">
+    CANAIS &amp; AGENTE N1
+  </text>
+
+  <!-- Card 1: Consumidor EletroLar -->
+  <g transform="translate(48, 148)" filter="url(#shadow)">
+    <rect width="194" height="105" rx="10" fill="#1E293B" stroke="#475569" stroke-width="1.2" />
+    <rect x="14" y="16" width="42" height="42" rx="8" fill="url(#awsGreen)" />
+    <circle cx="35" cy="31" r="7" fill="#FFFFFF" />
+    <path d="M23 49 C23 42, 47 42, 47 49" fill="#FFFFFF" />
+    <text x="68" y="34" fill="#F8FAFC" font-family="Inter, Segoe UI, sans-serif" font-size="14" font-weight="700">Cliente Varejo</text>
+    <text x="68" y="52" fill="#94A3B8" font-family="Inter, Segoe UI, sans-serif" font-size="11">Chat Online / Voz</text>
+    <text x="14" y="82" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">Defeito, CEP ou Troca/Devolução</text>
+  </g>
+
+  <!-- Card 2: Portal Web Vercel -->
+  <g transform="translate(48, 300)" filter="url(#shadow)">
+    <rect width="194" height="120" rx="10" fill="#1E293B" stroke="#475569" stroke-width="1.2" />
+    <rect x="14" y="16" width="42" height="42" rx="8" fill="#09090B" stroke="#334155" />
+    <polygon points="35,24 49,49 21,49" fill="#FFFFFF" />
+    <text x="68" y="34" fill="#F8FAFC" font-family="Inter, Segoe UI, sans-serif" font-size="14" font-weight="700">Portal Vercel</text>
+    <text x="68" y="52" fill="#94A3B8" font-family="Inter, Segoe UI, sans-serif" font-size="11">Bento UI + CSP Chime</text>
+    <text x="14" y="80" fill="#38BDF8" font-family="Inter, Segoe UI, sans-serif" font-size="11">• Widget FinOps Guardrail</text>
+    <text x="14" y="98" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• Bloqueio webdriver/bots</text>
+  </g>
+
+  <!-- Card 3: Agente N1 (Agent Workspace / CCP v2) -->
+  <g transform="translate(48, 475)" filter="url(#shadow)">
+    <rect width="194" height="120" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1.2" />
+    <rect x="14" y="16" width="42" height="42" rx="8" fill="url(#awsTeal)" />
+    <path d="M25 46 L31 38 L37 42 L45 29" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="68" y="34" fill="#F8FAFC" font-family="Inter, Segoe UI, sans-serif" font-size="14" font-weight="700">Agente N1 (CCP)</text>
+    <text x="68" y="52" fill="#94A3B8" font-family="Inter, Segoe UI, sans-serif" font-size="11">Agent Workspace v2</text>
+    <text x="14" y="80" fill="#6EE7B7" font-family="Inter, Segoe UI, sans-serif" font-size="11">• Atributos pv_* na tela</text>
+    <text x="14" y="98" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• Histórico 100% preservado</text>
+  </g>
+
+  <!-- AWS SERVICE 1: Amazon Connect -->
+  <g transform="translate(335, 165)" filter="url(#shadow)">
+    <rect width="230" height="155" rx="12" fill="#1E293B" stroke="#06B6D4" stroke-width="1.6" />
+    <rect x="16" y="16" width="48" height="48" rx="10" fill="url(#awsTeal)" />
+    <path d="M28 40 C28 32, 34 27, 40 27 C46 27, 52 32, 52 40" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+    <rect x="25" y="39" width="6" height="11" rx="2" fill="#FFFFFF" />
+    <rect x="49" y="39" width="6" height="11" rx="2" fill="#FFFFFF" />
+    <text x="76" y="36" fill="#F8FAFC" font-family="Inter, Segoe UI, sans-serif" font-size="15" font-weight="700">Amazon Connect</text>
+    <text x="76" y="54" fill="#67E8F9" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="600">Contact Flows (2019-10-30)</text>
+    <line x1="16" y1="76" x2="214" y2="76" stroke="#334155" stroke-width="1" />
+    <text x="16" y="96" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• PV-Entrada-Principal</text>
+    <text x="16" y="114" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• Polly Neural: Camila (pt-BR)</text>
+    <text x="16" y="132" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• PV-Transbordo-N1 &amp; Erro</text>
+  </g>
+
+  <!-- AWS SERVICE 2: Amazon Lex V2 -->
+  <g transform="translate(635, 130)" filter="url(#shadow)">
+    <rect width="230" height="135" rx="12" fill="#1E293B" stroke="#10B981" stroke-width="1.5" />
+    <rect x="16" y="16" width="46" height="46" rx="10" fill="url(#awsGreen)" />
+    <rect x="25" y="26" width="28" height="20" rx="4" fill="none" stroke="#FFFFFF" stroke-width="2.2" />
+    <circle cx="34" cy="36" r="2.2" fill="#FFFFFF" />
+    <circle cx="44" cy="36" r="2.2" fill="#FFFFFF" />
+    <path d="M35 46 L31 52 L41 46" fill="#FFFFFF" />
+    <text x="74" y="35" fill="#F8FAFC" font-family="Inter, Segoe UI, sans-serif" font-size="15" font-weight="700">Amazon Lex V2</text>
+    <text x="74" y="53" fill="#6EE7B7" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="600">PV-EletroLar-Bot (pt_BR)</text>
+    <text x="16" y="84" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">1. AcionarGarantiaDefeito</text>
+    <text x="16" y="102" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">2. LocalizarAssistenciaTecnica</text>
+    <text x="16" y="120" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">3. SolicitarTrocaDevolucao</text>
+  </g>
+
+  <!-- AWS SERVICE 3: AWS Lambda -->
+  <g transform="translate(920, 130)" filter="url(#shadow)">
+    <rect width="225" height="135" rx="12" fill="#1E293B" stroke="#FF9900" stroke-width="1.6" />
+    <rect x="16" y="16" width="46" height="46" rx="10" fill="url(#awsOrange)" />
+    <path d="M31 27 H37 L47 50 H41 L38 42 L32 50 H27 L35 37 Z" fill="#FFFFFF" />
+    <text x="74" y="35" fill="#F8FAFC" font-family="Inter, Segoe UI, sans-serif" font-size="15" font-weight="700">AWS Lambda</text>
+    <text x="74" y="53" fill="#FCD34D" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="600">Python 3.12 Fulfillment</text>
+    <text x="16" y="84" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• Guardrails Risco Elétrico/DIY</text>
+    <text x="16" y="102" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• Protocolo PV-YYYYMMDD-XXXX</text>
+    <text x="16" y="120" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• Validação NF, Série e CEP</text>
+  </g>
+
+  <!-- AWS SERVICE 4: Fila Humana N1 -->
+  <g transform="translate(335, 370)" filter="url(#shadow)">
+    <rect width="230" height="125" rx="12" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5" />
+    <rect x="16" y="14" width="42" height="42" rx="9" fill="url(#awsBlue)" />
+    <path d="M26 26 H48 M26 35 H48 M26 44 H42" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" />
+    <text x="70" y="32" fill="#F8FAFC" font-family="Inter, Segoe UI, sans-serif" font-size="14" font-weight="700">Roteamento &amp; Fila N1</text>
+    <text x="70" y="49" fill="#93C5FD" font-family="Inter, Segoe UI, sans-serif" font-size="11">PV-Fila-Suporte-PosVenda-N1</text>
+    <text x="16" y="76" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• Garantia Expirada → N1</text>
+    <text x="16" y="94" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• CEP Sem Cobertura → N1</text>
+    <text x="16" y="112" fill="#FCD34D" font-family="Inter, Segoe UI, sans-serif" font-size="11">• Alerta Segurança Elétrica → N1</text>
+  </g>
+
+  <!-- AWS SERVICE 5: Amazon Q in Connect + S3 -->
+  <g transform="translate(635, 320)" filter="url(#shadow)">
+    <rect width="230" height="130" rx="12" fill="#1E293B" stroke="#8B5CF6" stroke-width="1.5" />
+    <rect x="16" y="14" width="44" height="44" rx="9" fill="url(#awsPurple)" />
+    <text x="30" y="44" fill="#FFFFFF" font-family="Inter, Segoe UI, sans-serif" font-size="22" font-weight="800">Q</text>
+    <text x="72" y="33" fill="#F8FAFC" font-family="Inter, Segoe UI, sans-serif" font-size="14" font-weight="700">Amazon Q in Connect</text>
+    <text x="72" y="50" fill="#DDD6FE" font-family="Inter, Segoe UI, sans-serif" font-size="11">Wisdom KB + Amazon S3</text>
+    <text x="16" y="80" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• KB-001: Lavadoras (E1/E2/UE)</text>
+    <text x="16" y="98" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• KB-002: Geladeiras &amp; Micro-ondas</text>
+    <text x="16" y="116" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• KB-003: Política Garantia &amp; CDC</text>
+  </g>
+
+  <!-- AWS SERVICE 6: Amazon DynamoDB -->
+  <g transform="translate(920, 320)" filter="url(#shadow)">
+    <rect width="225" height="130" rx="12" fill="#1E293B" stroke="#3B82F6" stroke-width="1.6" />
+    <rect x="16" y="14" width="44" height="44" rx="9" fill="url(#awsBlue)" />
+    <ellipse cx="38" cy="27" rx="12" ry="5" fill="none" stroke="#FFFFFF" stroke-width="2" />
+    <path d="M26 27 V43 C26 46, 50 46, 50 43 V27" fill="none" stroke="#FFFFFF" stroke-width="2" />
+    <text x="72" y="33" fill="#F8FAFC" font-family="Inter, Segoe UI, sans-serif" font-size="14" font-weight="700">Amazon DynamoDB</text>
+    <text x="72" y="50" fill="#93C5FD" font-family="Inter, Segoe UI, sans-serif" font-size="11">PV-AssistenciasGarantia</text>
+    <text x="16" y="80" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• Single-Table (pk / sk On-Demand)</text>
+    <text x="16" y="98" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• 12 Assistências por CEP/Cidade</text>
+    <text x="16" y="116" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11">• 10 Notas Fiscais + Casos PV-*</text>
+  </g>
+
+  <!-- AWS SERVICE 7: CloudWatch Logs & Observability -->
+  <g transform="translate(635, 495)" filter="url(#shadow)">
+    <rect width="510" height="120" rx="12" fill="#1E293B" stroke="#10B981" stroke-width="1.5" />
+    <rect x="18" y="18" width="46" height="46" rx="10" fill="url(#awsGreen)" />
+    <circle cx="41" cy="41" r="12" fill="none" stroke="#FFFFFF" stroke-width="2.2" />
+    <path d="M36 41 L40 45 L47 36" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="78" y="37" fill="#F8FAFC" font-family="Inter, Segoe UI, sans-serif" font-size="15" font-weight="700">
+      Preservação de Contexto E2E &amp; CloudWatch Logs
+    </text>
+    <text x="78" y="55" fill="#6EE7B7" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="600">
+      Contrato de Atributos pv_* · Histórico Integral no CCP v2 · Auditoria DevSecOps Zero-Leak
+    </text>
+    <text x="18" y="86" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11.5">
+      • Atributos: pv_jornada, pv_modelo, pv_numero_serie, pv_nota_fiscal, pv_cep_cidade, pv_protocolo, pv_resumo
+    </text>
+    <text x="18" y="104" fill="#CBD5E1" font-family="Inter, Segoe UI, sans-serif" font-size="11.5">
+      • Fallback JSON local embarcado na Lambda para testes offline e resiliência operacional
+    </text>
+  </g>
+
+  <!-- Connectors / Arrows -->
+  <path d="M145 253 L145 294" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowCyan)" />
+  <path d="M242 355 C290 355, 290 242, 330 242" fill="none" stroke="#38BDF8" stroke-width="2.2" marker-end="url(#arrowCyan)" />
+  <path d="M565 215 L630 198" fill="none" stroke="#34D399" stroke-width="2.2" marker-end="url(#arrowGreen)" />
+  <path d="M865 198 L914 198" fill="none" stroke="#F59E0B" stroke-width="2.2" marker-end="url(#arrowOrange)" />
+  <path d="M1032 265 L1032 314" fill="none" stroke="#F59E0B" stroke-width="2.2" marker-end="url(#arrowOrange)" />
+  <path d="M565 275 L630 365" fill="none" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowCyan)" />
+  <path d="M450 320 L450 364" fill="none" stroke="#38BDF8" stroke-width="2.2" marker-end="url(#arrowCyan)" />
+  <path d="M335 450 C285 450, 285 535, 248 535" fill="none" stroke="#34D399" stroke-width="2.2" marker-end="url(#arrowGreen)" />
+  <path d="M635 555 L248 555" fill="none" stroke="#34D399" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowGreen)" />
+</svg>

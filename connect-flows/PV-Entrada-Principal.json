@@ -1,0 +1,288 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b001",
+  "Metadata": {
+    "entryPointPosition": { "x": 40, "y": 220 },
+    "snapToGrid": true,
+    "ActionMetadata": {
+      "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b001": { "position": { "x": 220, "y": 220 } },
+      "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b002": { "position": { "x": 500, "y": 220 } },
+      "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b003": { "position": { "x": 780, "y": 220 } },
+      "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b004": { "position": { "x": 1060, "y": 220 } },
+      "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b005": { "position": { "x": 1340, "y": 220 } },
+      "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b006": { "position": { "x": 1620, "y": 220 } },
+      "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b007": { "position": { "x": 1920, "y": 220 } },
+      "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b008": { "position": { "x": 2260, "y": 220 } },
+      "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b009": { "position": { "x": 2580, "y": 220 } },
+      "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b010": { "position": { "x": 2900, "y": 80 } },
+      "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b011": { "position": { "x": 2900, "y": 360 } },
+      "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b012": { "position": { "x": 3220, "y": 220 } }
+    },
+    "name": "PV-Entrada-Principal",
+    "description": "Fluxo de entrada omnichannel (Chat Online e Voz) do Pós-Venda EletroLar Varejo com Amazon Q in Connect e Amazon Lex V2 (pt-BR).",
+    "type": "contactFlow",
+    "status": "PUBLISHED"
+  },
+  "Actions": [
+    {
+      "Identifier": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b001",
+      "Type": "UpdateFlowLoggingBehavior",
+      "Parameters": {
+        "FlowLoggingBehavior": "Enabled"
+      },
+      "Transitions": {
+        "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b002"
+      }
+    },
+    {
+      "Identifier": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b002",
+      "Type": "UpdateContactTextToSpeechVoice",
+      "Parameters": {
+        "TextToSpeechVoice": "Camila",
+        "TextToSpeechEngine": "Neural",
+        "TextToSpeechStyle": "None"
+      },
+      "Transitions": {
+        "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b003",
+        "Errors": [
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b003",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b003",
+      "Type": "UpdateContactData",
+      "Parameters": {
+        "LanguageCode": "pt-BR"
+      },
+      "Transitions": {
+        "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b004",
+        "Errors": [
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b004",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b004",
+      "Type": "CreateWisdomSession",
+      "Parameters": {
+        "WisdomAssistantArn": "arn:aws:wisdom:us-west-2:000000000000:assistant/<WISDOM_ASSISTANT_ID>"
+      },
+      "Transitions": {
+        "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b005",
+        "Errors": [
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b005",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b005",
+      "Type": "UpdateContactAttributes",
+      "Parameters": {
+        "Attributes": {
+          "pv_empresa": "EletroLar Varejo",
+          "pv_canal": "$.Channel",
+          "pv_jornada": "INICIO",
+          "pv_transbordo": "FALSE",
+          "pv_motivo_transbordo": "NENHUM",
+          "pv_risco_seguranca": "FALSE"
+        }
+      },
+      "Transitions": {
+        "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b006",
+        "Errors": [
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b006",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b006",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Olá! Bem-vindo ao Pós-Venda e Suporte Técnico da EletroLar Varejo. Posso ajudar você com defeito no produto e acionamento de garantia, localização de assistência técnica autorizada por CEP ou cidade, ou solicitação de troca e devolução."
+      },
+      "Transitions": {
+        "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b007",
+        "Errors": [
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b010",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b007",
+      "Type": "ConnectParticipantWithLexBot",
+      "Parameters": {
+        "Text": "Como posso ajudar você hoje?",
+        "LexV2Bot": {
+          "AliasArn": "arn:aws:lex:us-west-2:000000000000:bot-alias/<LEX_BOT_ID>/<LEX_BOT_ALIAS_ID>"
+        },
+        "LexSessionAttributes": {
+          "pv_canal": "$.Attributes.pv_canal",
+          "pv_jornada": "$.Attributes.pv_jornada"
+        }
+      },
+      "Transitions": {
+        "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b008",
+        "Conditions": [
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b008",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": ["AcionarGarantiaDefeito"]
+            }
+          },
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b008",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": ["LocalizarAssistenciaTecnica"]
+            }
+          },
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b008",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": ["SolicitarTrocaDevolucao"]
+            }
+          },
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b008",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": ["FalarComAtendente"]
+            }
+          },
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b008",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": ["FallbackIntent"]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b010",
+            "ErrorType": "NoMatchingCondition"
+          },
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b010",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b008",
+      "Type": "UpdateContactAttributes",
+      "Parameters": {
+        "Attributes": {
+          "pv_jornada": "$.Lex.SessionAttributes.pv_jornada",
+          "pv_modelo": "$.Lex.SessionAttributes.pv_modelo",
+          "pv_categoria": "$.Lex.SessionAttributes.pv_categoria",
+          "pv_numero_serie": "$.Lex.SessionAttributes.pv_numero_serie",
+          "pv_nota_fiscal": "$.Lex.SessionAttributes.pv_nota_fiscal",
+          "pv_defeito_relatado": "$.Lex.SessionAttributes.pv_defeito_relatado",
+          "pv_status_garantia": "$.Lex.SessionAttributes.pv_status_garantia",
+          "pv_cep_cidade": "$.Lex.SessionAttributes.pv_cep_cidade",
+          "pv_assistencia_nome": "$.Lex.SessionAttributes.pv_assistencia_nome",
+          "pv_assistencia_contato": "$.Lex.SessionAttributes.pv_assistencia_contato",
+          "pv_motivo_troca": "$.Lex.SessionAttributes.pv_motivo_troca",
+          "pv_elegibilidade_troca": "$.Lex.SessionAttributes.pv_elegibilidade_troca",
+          "pv_protocolo": "$.Lex.SessionAttributes.pv_protocolo",
+          "pv_risco_seguranca": "$.Lex.SessionAttributes.pv_risco_seguranca",
+          "pv_transbordo": "$.Lex.SessionAttributes.pv_transbordo",
+          "pv_motivo_transbordo": "$.Lex.SessionAttributes.pv_motivo_transbordo",
+          "pv_resumo": "$.Lex.SessionAttributes.pv_resumo"
+        }
+      },
+      "Transitions": {
+        "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b009",
+        "Errors": [
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b009",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b009",
+      "Type": "Compare",
+      "Parameters": {
+        "ComparisonValue": "$.Attributes.pv_transbordo"
+      },
+      "Transitions": {
+        "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b011",
+        "Conditions": [
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b010",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": ["TRUE"]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b011",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b010",
+      "Type": "TransferToFlow",
+      "Parameters": {
+        "ContactFlowId": "arn:aws:connect:us-west-2:000000000000:instance/<INSTANCE_ID>/contact-flow/<FLOW_TRANSBORDO_N1_ID>"
+      },
+      "Transitions": {
+        "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b012",
+        "Errors": [
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b012",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b011",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "A EletroLar Varejo agradece o seu contato! Caso precise de suporte adicional, basta informar o seu protocolo $.Attributes.pv_protocolo. Tenha um excelente dia!"
+      },
+      "Transitions": {
+        "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b012",
+        "Errors": [
+          {
+            "NextAction": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b012",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "a1b2c3d4-e5f6-4a1b-8c2d-f1e2d3c4b012",
+      "Type": "DisconnectParticipant",
+      "Parameters": {},
+      "Transitions": {}
+    }
+  ]
+}

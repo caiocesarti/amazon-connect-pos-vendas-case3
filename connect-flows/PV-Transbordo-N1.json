@@ -1,0 +1,164 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e001",
+  "Metadata": {
+    "entryPointPosition": { "x": 40, "y": 220 },
+    "snapToGrid": true,
+    "ActionMetadata": {
+      "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e001": { "position": { "x": 220, "y": 220 } },
+      "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e002": { "position": { "x": 500, "y": 220 } },
+      "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e003": { "position": { "x": 780, "y": 220 } },
+      "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e004": { "position": { "x": 1060, "y": 220 } },
+      "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e005": { "position": { "x": 1360, "y": 100 } },
+      "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e006": { "position": { "x": 1660, "y": 100 } },
+      "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e007": { "position": { "x": 1660, "y": 360 } },
+      "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e008": { "position": { "x": 1960, "y": 360 } }
+    },
+    "name": "PV-Transbordo-N1",
+    "description": "Fluxo de transbordo humano N1 para o Agent Workspace / CCP v2 preservando todo o contexto pv_* e histórico de mensagens.",
+    "type": "contactFlow",
+    "status": "PUBLISHED"
+  },
+  "Actions": [
+    {
+      "Identifier": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e001",
+      "Type": "UpdateFlowLoggingBehavior",
+      "Parameters": {
+        "FlowLoggingBehavior": "Enabled"
+      },
+      "Transitions": {
+        "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e002"
+      }
+    },
+    {
+      "Identifier": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e002",
+      "Type": "UpdateContactAttributes",
+      "Parameters": {
+        "Attributes": {
+          "pv_jornada": "$.Attributes.pv_jornada",
+          "pv_modelo": "$.Attributes.pv_modelo",
+          "pv_numero_serie": "$.Attributes.pv_numero_serie",
+          "pv_nota_fiscal": "$.Attributes.pv_nota_fiscal",
+          "pv_cep_cidade": "$.Attributes.pv_cep_cidade",
+          "pv_protocolo": "$.Attributes.pv_protocolo",
+          "pv_resumo": "$.Attributes.pv_resumo",
+          "pv_motivo_transbordo": "$.Attributes.pv_motivo_transbordo",
+          "pv_fila_destino": "PV-Fila-Suporte-PosVenda-N1"
+        }
+      },
+      "Transitions": {
+        "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e003",
+        "Errors": [
+          {
+            "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e003",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e003",
+      "Type": "UpdateContactTargetQueue",
+      "Parameters": {
+        "QueueId": "arn:aws:connect:us-west-2:000000000000:instance/<INSTANCE_ID>/queue/<QUEUE_N1_ID>"
+      },
+      "Transitions": {
+        "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e004",
+        "Errors": [
+          {
+            "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e007",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e004",
+      "Type": "CheckHoursOfOperation",
+      "Parameters": {
+        "HoursOfOperationId": "arn:aws:connect:us-west-2:000000000000:instance/<INSTANCE_ID>/operating-hours/<HOURS_N1_ID>"
+      },
+      "Transitions": {
+        "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e007",
+        "Conditions": [
+          {
+            "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e005",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": ["True"]
+            }
+          },
+          {
+            "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e007",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": ["False"]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e005",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e005",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Aguarde um instante enquanto conectamos você a um especialista da EletroLar. O protocolo $.Attributes.pv_protocolo e todo o histórico da conversa já foram enviados ao painel do atendente."
+      },
+      "Transitions": {
+        "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e006",
+        "Errors": [
+          {
+            "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e006",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e006",
+      "Type": "TransferContactToQueue",
+      "Parameters": {},
+      "Transitions": {
+        "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e007",
+        "Errors": [
+          {
+            "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e007",
+            "ErrorType": "QueueAtCapacity"
+          },
+          {
+            "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e007",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e007",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "No momento todos os nossos especialistas estão em atendimento ou estamos fora do horário comercial (segunda a sábado, das 08h às 20h). Seu protocolo $.Attributes.pv_protocolo e todo o contexto foram registrados com prioridade."
+      },
+      "Transitions": {
+        "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e008",
+        "Errors": [
+          {
+            "NextAction": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e008",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "b2c3d4e5-f6a1-4b2c-9d3e-a2b3c4d5e008",
+      "Type": "DisconnectParticipant",
+      "Parameters": {},
+      "Transitions": {}
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+name: CI — Zero-Leak, Dataset, Flows & Pytest
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  quality-and-tests:
+    name: DevSecOps Audit & Unit Tests (Python 3.12)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: "requirements-dev.txt"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Run Zero-Leak Secret Scanner
+        run: python scripts/verificar_segredos.py
+
+      - name: Validate Simulated Dataset & Schema
+        run: python scripts/validar_dataset.py
+
+      - name: Validate Contact Flows (2019-10-30)
+        run: python scripts/validar_flows.py
+
+      - name: Run Pytest Suite with Coverage
+        run: python -m pytest --cov=lambda/pos_venda_fulfillment --cov-report=term-missing

@@ -1,0 +1,106 @@
+{
+  "metadata": {
+    "bot_name": "PV-EletroLar-Bot",
+    "locale": "pt_BR",
+    "voice_id": "Camila",
+    "voice_engine": "neural"
+  },
+  "slotTypes": [
+    {
+      "name": "PV_CategoriaEletrodomestico",
+      "description": "Categoria de linha branca e eletrodomésticos comercializados pela EletroLar Varejo.",
+      "valueSelectionStrategy": "TOP_RESOLUTION",
+      "slotTypeValues": [
+        {
+          "sampleValue": { "value": "LAVADORA" },
+          "synonyms": [
+            { "value": "máquina de lavar" },
+            { "value": "maquina de lavar roupa" },
+            { "value": "lavadora de roupas" },
+            { "value": "lava e seca" },
+            { "value": "tanquinho" },
+            { "value": "centrífuga" }
+          ]
+        },
+        {
+          "sampleValue": { "value": "GELADEIRA" },
+          "synonyms": [
+            { "value": "geladeira" },
+            { "value": "refrigerador" },
+            { "value": "frost free" },
+            { "value": "geladeira inverse" },
+            { "value": "freezer" }
+          ]
+        },
+        {
+          "sampleValue": { "value": "MICROONDAS" },
+          "synonyms": [
+            { "value": "micro-ondas" },
+            { "value": "microondas" },
+            { "value": "forno de micro-ondas" },
+            { "value": "forno microondas" }
+          ]
+        },
+        {
+          "sampleValue": { "value": "FOGAO" },
+          "synonyms": [
+            { "value": "fogão" },
+            { "value": "fogao 5 bocas" },
+            { "value": "fogao mesa de vidro" },
+            { "value": "cooktop" }
+          ]
+        },
+        {
+          "sampleValue": { "value": "AR_CONDICIONADO" },
+          "synonyms": [
+            { "value": "ar-condicionado" },
+            { "value": "ar condicionado split" },
+            { "value": "split inverter" },
+            { "value": "climatizador" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PV_MotivoTrocaDevolucao",
+      "description": "Motivos padronizados para solicitação de troca ou devolução no pós-venda.",
+      "valueSelectionStrategy": "TOP_RESOLUTION",
+      "slotTypeValues": [
+        {
+          "sampleValue": { "value": "Arrependimento 7 dias (CDC Art. 49)" },
+          "synonyms": [
+            { "value": "arrependimento" },
+            { "value": "desisti da compra" },
+            { "value": "quero devolver dentro dos 7 dias" },
+            { "value": "não coube no espaço" }
+          ]
+        },
+        {
+          "sampleValue": { "value": "Produto avariado na entrega" },
+          "synonyms": [
+            { "value": "veio amassado" },
+            { "value": "chegou riscado" },
+            { "value": "avaria no transporte" },
+            { "value": "vidro quebrado na entrega" }
+          ]
+        },
+        {
+          "sampleValue": { "value": "Defeito funcional nos primeiros dias" },
+          "synonyms": [
+            { "value": "veio com defeito" },
+            { "value": "parou de funcionar na primeira semana" },
+            { "value": "não ligou desde que chegou" }
+          ]
+        },
+        {
+          "sampleValue": { "value": "Voltagem ou modelo divergente do pedido" },
+          "synonyms": [
+            { "value": "veio 220v em vez de 110v" },
+            { "value": "voltagem errada" },
+            { "value": "entregaram modelo errado" }
+          ]
+        }
+      ]
+    }
+  ]
+}

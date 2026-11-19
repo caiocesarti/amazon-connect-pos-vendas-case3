@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 340" width="100%" height="auto" role="img" aria-labelledby="banner-title banner-desc">
+  <title id="banner-title">EletroLar Varejo — Pós-Venda &amp; Suporte de Eletrodomésticos no Amazon Connect</title>
+  <desc id="banner-desc">Banner representando a central omnichannel de Pós-Venda e Suporte Técnico de Eletrodomésticos no Amazon Connect com Chat Online, Voz WebRTC Camila (Amazon Polly), Amazon Lex V2, AWS Lambda, Amazon DynamoDB, Amazon Q in Connect e Agent Workspace.</desc>
+
+  <defs>
+    <linearGradient id="heroBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050E1D" />
+      <stop offset="55%" stop-color="#0B2545" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <radialGradient id="glowBlue" cx="72%" cy="45%" r="48%">
+      <stop offset="0%" stop-color="#2563EB" stop-opacity="0.34" />
+      <stop offset="60%" stop-color="#1D4ED8" stop-opacity="0.10" />
+      <stop offset="100%" stop-color="#1D4ED8" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="glowSky" cx="22%" cy="85%" r="45%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.20" />
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563EB" />
+      <stop offset="50%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#60A5FA" />
+    </linearGradient>
+
+    <linearGradient id="cardGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#112442" stop-opacity="0.88" />
+      <stop offset="100%" stop-color="#081224" stop-opacity="0.94" />
+    </linearGradient>
+
+    <linearGradient id="headsetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+
+    <pattern id="techGrid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#334155" fill-opacity="0.38" />
+    </pattern>
+
+    <filter id="softShadow" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.55" />
+    </filter>
+  </defs>
+
+  <!-- Base background -->
+  <rect width="1280" height="340" rx="16" fill="url(#heroBg)" />
+  <rect width="1280" height="340" rx="16" fill="url(#techGrid)" />
+  <rect width="1280" height="340" rx="16" fill="url(#glowBlue)" />
+  <rect width="1280" height="340" rx="16" fill="url(#glowSky)" />
+  <rect x="0.75" y="0.75" width="1278.5" height="338.5" rx="15.5" fill="none" stroke="#1E3A5F" stroke-width="1.5" />
+
+  <!-- Top accent line -->
+  <rect x="48" y="0" width="280" height="3" rx="1.5" fill="url(#accentGrad)" />
+
+  <!-- ================= LEFT HERO SECTION ================= -->
+  <g transform="translate(56, 50)">
+    <!-- Status / Brand Pill -->
+    <rect x="0" y="0" width="420" height="30" rx="15" fill="#091528" stroke="#1E3A5F" stroke-width="1" />
+    <circle cx="18" cy="15" r="5" fill="#38BDF8" />
+    <circle cx="18" cy="15" r="9" fill="#38BDF8" fill-opacity="0.24" />
+    <text x="34" y="19" fill="#E2E8F0" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" letter-spacing="0.8">
+      PROJETO DE ESTUDO • CASE 3 VAREJO AMAZON CONNECT
+    </text>
+
+    <!-- Main Heading -->
+    <text x="0" y="84" fill="#FFFFFF" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="38" font-weight="800" letter-spacing="-0.8">
+      EletroLar Pós-Venda Omnichannel
+    </text>
+    <text x="0" y="122" fill="#BAE6FD" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="400">
+      Garantia Automática, Rede Autorizada por CEP/Cidade &amp; Troca Fácil com Transbordo N1
+    </text>
+
+    <!-- Accent divider -->
+    <rect x="0" y="144" width="110" height="3.5" rx="1.75" fill="url(#accentGrad)" />
+
+    <!-- Feature / Stack Pills -->
+    <g transform="translate(0, 174)">
+      <rect x="0" y="0" width="142" height="32" rx="8" fill="#172554" stroke="#3B82F6" stroke-opacity="0.6" stroke-width="1" />
+      <text x="71" y="20" text-anchor="middle" fill="#BFDBFE" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600">
+        Lex V2 • Polly Camila
+      </text>
+
+      <rect x="154" y="0" width="144" height="32" rx="8" fill="#083344" stroke="#38BDF8" stroke-opacity="0.55" stroke-width="1" />
+      <text x="226" y="20" text-anchor="middle" fill="#BAE6FD" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600">
+        Lambda + DynamoDB
+      </text>
+
+      <rect x="310" y="0" width="146" height="32" rx="8" fill="#1E1B4B" stroke="#6366F1" stroke-opacity="0.55" stroke-width="1" />
+      <text x="383" y="20" text-anchor="middle" fill="#C7D2FE" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600">
+        WebRTC Voz &amp; Chat
+      </text>
+
+      <rect x="468" y="0" width="136" height="32" rx="8" fill="#18181B" stroke="#3F3F46" stroke-width="1" />
+      <text x="536" y="20" text-anchor="middle" fill="#D4D4D8" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600">
+        Zero-Leak DevSecOps
+      </text>
+    </g>
+
+    <!-- Bottom architecture subtle caption -->
+    <text x="0" y="238" fill="#94A3B8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="12">
+      Portal Vercel + Python 3.12 + Tabela PV-AssistenciasGarantia + Contexto pv_*
+    </text>
+  </g>
+
+  <!-- ================= RIGHT CALL CENTER VISUALIZATION ================= -->
+  <g transform="translate(700, 32)">
+    <!-- Connection lines -->
+    <path d="M 155 138 C 210 138, 215 74, 265 74" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-dasharray="5 4" stroke-opacity="0.7" />
+    <path d="M 155 148 C 215 148, 220 206, 265 206" fill="none" stroke="#38BDF8" stroke-width="1.8" stroke-dasharray="5 4" stroke-opacity="0.7" />
+    <circle cx="265" cy="74" r="3.5" fill="#3B82F6" />
+    <circle cx="265" cy="206" r="3.5" fill="#38BDF8" />
+
+    <!-- Central Call Center Hub -->
+    <g transform="translate(22, 54)" filter="url(#softShadow)">
+      <circle cx="88" cy="88" r="82" fill="#081529" fill-opacity="0.88" stroke="#1E3A5F" stroke-width="1.5" />
+      <circle cx="88" cy="88" r="66" fill="#172554" fill-opacity="0.35" stroke="url(#headsetGrad)" stroke-width="1.5" stroke-opacity="0.65" />
+
+      <!-- Vector Headset Icon -->
+      <path d="M 56 92 L 56 80 C 56 60, 70 46, 88 46 C 106 46, 120 60, 120 80 L 120 92" fill="none" stroke="url(#headsetGrad)" stroke-width="5.5" stroke-linecap="round" />
+      <rect x="47" y="82" width="14" height="28" rx="6" fill="#2563EB" />
+      <rect x="115" y="82" width="14" height="28" rx="6" fill="#38BDF8" />
+      <path d="M 122 108 C 122 122, 108 126, 94 126" fill="none" stroke="#60A5FA" stroke-width="3.5" stroke-linecap="round" />
+      <rect x="82" y="122" width="14" height="7" rx="3.5" fill="#38BDF8" />
+
+      <!-- Live voice waveform inside hub -->
+      <g transform="translate(69, 76)">
+        <rect x="0" y="10" width="4" height="14" rx="2" fill="#93C5FD" />
+        <rect x="8" y="4" width="4" height="26" rx="2" fill="#38BDF8" />
+        <rect x="16" y="0" width="4" height="34" rx="2" fill="#2563EB" />
+        <rect x="24" y="6" width="4" height="22" rx="2" fill="#38BDF8" />
+        <rect x="32" y="11" width="4" height="12" rx="2" fill="#93C5FD" />
+      </g>
+    </g>
+
+    <!-- Floating Card 1: Protocolo de Garantia & Troca -->
+    <g transform="translate(265, 18)" filter="url(#softShadow)">
+      <rect x="0" y="0" width="265" height="114" rx="12" fill="url(#cardGlass)" stroke="#1E3A5F" stroke-width="1" />
+      <circle cx="18" cy="20" r="4" fill="#3B82F6" />
+      <text x="30" y="24" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700">
+        GARANTIA &amp; TROCA • CHAT / WEBRTC
+      </text>
+      <rect x="196" y="11" width="56" height="18" rx="9" fill="#172554" />
+      <text x="224" y="23.5" text-anchor="middle" fill="#60A5FA" font-family="system-ui, sans-serif" font-size="9.5" font-weight="700">
+        ATIVA
+      </text>
+
+      <rect x="14" y="39" width="237" height="28" rx="6" fill="#050C18" fill-opacity="0.85" stroke="#1E3A5F" stroke-width="1" />
+      <text x="24" y="57" fill="#CBD5E1" font-family="system-ui, sans-serif" font-size="11">
+        ✓ Protocolo <tspan fill="#60A5FA" font-weight="700">PV-20261118-4821</tspan> (NF-100201)
+      </text>
+
+      <!-- Journey chips -->
+      <g transform="translate(14, 78)">
+        <rect x="0" y="0" width="72" height="22" rx="6" fill="#172554" stroke="#3B82F6" stroke-opacity="0.5" stroke-width="1" />
+        <text x="36" y="14.5" text-anchor="middle" fill="#BFDBFE" font-family="system-ui, sans-serif" font-size="10" font-weight="600">
+          Defeito
+        </text>
+        <rect x="78" y="0" width="76" height="22" rx="6" fill="#083344" stroke="#38BDF8" stroke-opacity="0.5" stroke-width="1" />
+        <text x="116" y="14.5" text-anchor="middle" fill="#BAE6FD" font-family="system-ui, sans-serif" font-size="10" font-weight="600">
+          Autorizada
+        </text>
+        <rect x="160" y="0" width="77" height="22" rx="6" fill="#1E1B4B" stroke="#6366F1" stroke-opacity="0.5" stroke-width="1" />
+        <text x="198.5" y="14.5" text-anchor="middle" fill="#C7D2FE" font-family="system-ui, sans-serif" font-size="10" font-weight="600">
+          Troca 7d
+        </text>
+      </g>
+    </g>
+
+    <!-- Floating Card 2: Agent Workspace Context -->
+    <g transform="translate(265, 150)" filter="url(#softShadow)">
+      <rect x="0" y="0" width="265" height="108" rx="12" fill="url(#cardGlass)" stroke="#1E3A5F" stroke-width="1" />
+      <circle cx="18" cy="20" r="4" fill="#38BDF8" />
+      <text x="30" y="24" fill="#E2E8F0" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700">
+        AGENT WORKSPACE • TRANSBORDO N1
+      </text>
+
+      <rect x="14" y="38" width="113" height="54" rx="8" fill="#050C18" fill-opacity="0.85" stroke="#1E3A5F" stroke-width="1" />
+      <text x="24" y="55" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="10">Contexto pv_*</text>
+      <text x="24" y="79" fill="#60A5FA" font-family="system-ui, sans-serif" font-size="18" font-weight="800">100% Íntegro</text>
+
+      <rect x="137" y="38" width="114" height="54" rx="8" fill="#050C18" fill-opacity="0.85" stroke="#1E3A5F" stroke-width="1" />
+      <text x="147" y="55" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="10">Rede Autorizada</text>
+      <text x="147" y="79" fill="#38BDF8" font-family="system-ui, sans-serif" font-size="18" font-weight="800">12 Polos</text>
+    </g>
+  </g>
+</svg>

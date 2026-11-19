@@ -1,0 +1,51 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "c3d4e5f6-a1b2-4c3d-8e4f-b3c4d5e6f001",
+  "Metadata": {
+    "entryPointPosition": { "x": 40, "y": 220 },
+    "snapToGrid": true,
+    "ActionMetadata": {
+      "c3d4e5f6-a1b2-4c3d-8e4f-b3c4d5e6f001": { "position": { "x": 240, "y": 220 } },
+      "c3d4e5f6-a1b2-4c3d-8e4f-b3c4d5e6f002": { "position": { "x": 540, "y": 220 } },
+      "c3d4e5f6-a1b2-4c3d-8e4f-b3c4d5e6f003": { "position": { "x": 840, "y": 220 } }
+    },
+    "name": "PV-Erro-Generico",
+    "description": "Fluxo de contingência segura para tratamento de falhas inesperadas antes do encerramento.",
+    "type": "contactFlow",
+    "status": "PUBLISHED"
+  },
+  "Actions": [
+    {
+      "Identifier": "c3d4e5f6-a1b2-4c3d-8e4f-b3c4d5e6f001",
+      "Type": "UpdateFlowLoggingBehavior",
+      "Parameters": {
+        "FlowLoggingBehavior": "Enabled"
+      },
+      "Transitions": {
+        "NextAction": "c3d4e5f6-a1b2-4c3d-8e4f-b3c4d5e6f002"
+      }
+    },
+    {
+      "Identifier": "c3d4e5f6-a1b2-4c3d-8e4f-b3c4d5e6f002",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Pedimos desculpas, ocorreu uma instabilidade momentânea em nosso sistema de pós-venda. Por favor, tente novamente em alguns instantes ou ligue para nossa central gratuita 0800 770 3003."
+      },
+      "Transitions": {
+        "NextAction": "c3d4e5f6-a1b2-4c3d-8e4f-b3c4d5e6f003",
+        "Errors": [
+          {
+            "NextAction": "c3d4e5f6-a1b2-4c3d-8e4f-b3c4d5e6f003",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "c3d4e5f6-a1b2-4c3d-8e4f-b3c4d5e6f003",
+      "Type": "DisconnectParticipant",
+      "Parameters": {},
+      "Transitions": {}
+    }
+  ]
+}

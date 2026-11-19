@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EletroLar Varejo — Central de Pós-Venda e Suporte Técnico. Acione a garantia do seu eletrodoméstico, encontre assistências autorizadas perto de você ou solicite troca e devolução." />
+  <title>EletroLar Varejo | Pós-Venda, Garantia e Assistência Autorizada</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+  <!-- Barra Superior de Atendimento e Acessibilidade -->
+  <div class="utility-bar" role="region" aria-label="Central do Cliente e ajustes de leitura">
+    <div class="container utility-inner">
+      <div class="env-notice">
+        <span class="status-led" aria-hidden="true"></span>
+        <span>Central do Cliente 24h • Garantia de Fábrica, Rede Autorizada e Troca Fácil</span>
+      </div>
+
+      <div class="a11y-toolbar" role="group" aria-label="Ajustes de leitura e contraste">
+        <span class="a11y-caption">Tamanho da letra:</span>
+        <button type="button" id="btn-font-decrease" class="a11y-chip" aria-label="Diminuir tamanho da letra">A−</button>
+        <button type="button" id="btn-font-reset" class="a11y-chip" aria-label="Tamanho padrão da letra">A</button>
+        <button type="button" id="btn-font-increase" class="a11y-chip" aria-label="Aumentar tamanho da letra">A+</button>
+        <span class="a11y-sep" aria-hidden="true"></span>
+        <button type="button" id="btn-theme-toggle" class="a11y-chip a11y-theme-btn" aria-pressed="false" aria-label="Alternar alto contraste escuro">
+          <svg class="icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+          <span id="theme-text">Alto Contraste</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegação Principal -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="#" class="brand" aria-label="EletroLar Varejo — Início">
+        <img id="header-logo-img" src="./assets/logo-eletrolar.svg" alt="EletroLar — Pós-Venda &amp; Suporte Oficial" class="brand-logo-img" />
+      </a>
+
+      <nav class="nav-links" aria-label="Seções da página">
+        <a href="#experiencia-bento">Como Funciona</a>
+        <a href="#especialidades-bento">Produtos</a>
+        <a href="#diretorio-assistencias">Assistência Autorizada</a>
+        <a href="#canal-voz">Atendimento por Telefone</a>
+        <a href="#faq-chat">Dúvidas</a>
+      </nav>
+
+      <div class="nav-cta">
+        <button type="button" class="btn btn-primary btn-open-chat" data-action="open-chat">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+          </svg>
+          <span class="nav-cta-text-full">Atendimento pelo Chat</span>
+          <span class="nav-cta-text-short">Chat</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo-principal">
+    <!-- HERO EDITORIAL + BENTO MOSAIC -->
+    <section class="hero-section" aria-labelledby="hero-heading">
+      <div class="container hero-layout">
+        <div class="hero-editorial">
+          <div class="eyebrow">
+            <span class="eyebrow-pill">SUPORTE OFICIAL ELETROLAR</span>
+            <span>Atendimento rápido e sem burocracia</span>
+          </div>
+
+          <h1 id="hero-heading">
+            Cuidado completo para a sua casa, <em>sem espera</em> e no seu tempo.
+          </h1>
+
+          <p class="hero-sub">
+            Acione a garantia da sua <strong>máquina de lavar, geladeira, micro-ondas, fogão ou ar-condicionado</strong>, encontre a <strong>assistência técnica autorizada</strong> mais próxima de você ou solicite <strong>troca e devolução</strong> com protocolo na hora.
+          </p>
+
+          <div class="hero-actions">
+            <button type="button" class="btn btn-primary btn-lg btn-open-chat" data-action="open-chat">
+              <span>Iniciar Atendimento no Chat</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+            <a href="#diretorio-assistencias" class="btn btn-ghost btn-lg">
+              Encontrar assistência autorizada
+            </a>
+          </div>
+
+          <!-- Atalhos rápidos -->
+          <div class="quick-prompts" aria-label="Serviços mais procurados">
+            <span class="quick-label">Acesso rápido:</span>
+            <button type="button" class="prompt-tag" data-chat-trigger="Minha máquina de lavar parou de funcionar">Defeito na máquina de lavar</button>
+            <button type="button" class="prompt-tag" data-quick-esp="LAVADORA" data-quick-cid="São Paulo">Autorizadas em São Paulo</button>
+            <button type="button" class="prompt-tag" data-quick-esp="GELADEIRA" data-quick-cid="Salvador">Autorizadas em Salvador</button>
+            <button type="button" class="prompt-tag" data-chat-trigger="Quero solicitar troca ou devolução de um produto">Troca ou devolução</button>
+          </div>
+        </div>
+
+        <!-- Mosaico Bento Direito do Hero -->
+        <div class="hero-bento">
+          <div class="hb-card hb-photo-main">
+            <img
+              src="./assets/atendente-eletrolar-pos-venda.jpg"
+              alt="Camila, especialista em atendimento da EletroLar Varejo sorrindo com headset profissional"
+            />
+            <div class="hb-photo-overlay">
+              <span class="hb-tag">Atendimento Acolhedor</span>
+              <p>Suporte passo a passo pelo chat online ou por voz para resolver tudo no primeiro contato.</p>
+            </div>
+          </div>
+
+          <div class="hb-card hb-metric-dark">
+            <div class="hb-metric-top">
+              <span class="mono-label">RESOLUÇÃO ÁGIL</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div class="hb-metric-value">Em 1 min</div>
+            <p class="hb-metric-desc">Abertura de garantia, troca ou localização do posto autorizado mais próximo.</p>
+          </div>
+
+          <div class="hb-card hb-protocol-preview">
+            <div class="hb-proto-header">
+              <span class="mono-badge">PV-20261118-4821</span>
+              <span class="proto-status">Confirmado</span>
+            </div>
+            <p class="proto-doc">Lavadora EletroLar 12kg Inverter</p>
+            <span class="proto-meta">TecnoLar Paulista • Visita agendada em até 24h</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENTO GRID PRINCIPAL: JORNADA DO CLIENTE -->
+    <section id="experiencia-bento" class="section" aria-labelledby="bento-heading">
+      <div class="container">
+        <div class="section-intro">
+          <div>
+            <span class="section-kicker">Simples do início ao fim</span>
+            <h2 id="bento-heading">Um Pós-Venda pensado para facilitar o seu dia</h2>
+          </div>
+          <p class="section-lead">
+            Resolva tudo pelo chat sem filas de espera ou fale com nossa equipe quando preferir.
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Bento Cell 1: Span 7 -->
+          <article class="bento-item bento-span-7 bento-forest">
+            <div class="bento-content">
+              <div class="bento-step-pill">01 • Fale com suas próprias palavras</div>
+              <h3>Conte o que aconteceu com o seu aparelho e nós cuidamos do resto.</h3>
+              <p>
+                Não precisa procurar códigos complicados. Basta dizer qual produto apresentou problema, informar seu CEP ou pedir a troca para receber atendimento imediato.
+              </p>
+
+              <div class="translation-pills" aria-label="Exemplos de solicitações no chat">
+                <div class="trans-row">
+                  <span class="trans-said">"Minha máquina de lavar parou de funcionar"</span>
+                  <span class="trans-arrow" aria-hidden="true">→</span>
+                  <span class="trans-resolved">Garantia de Fábrica</span>
+                </div>
+                <div class="trans-row">
+                  <span class="trans-said">"Qual a assistência perto do CEP 01310-200?"</span>
+                  <span class="trans-arrow" aria-hidden="true">→</span>
+                  <span class="trans-resolved">Rede Autorizada</span>
+                </div>
+                <div class="trans-row">
+                  <span class="trans-said">"Quero trocar o micro-ondas que recebi ontem"</span>
+                  <span class="trans-arrow" aria-hidden="true">→</span>
+                  <span class="trans-resolved">Troca e Devolução</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bento Cell 2: Span 5 -->
+          <article class="bento-item bento-span-5 bento-photo-split">
+            <div class="bento-content">
+              <div class="bento-step-pill">02 • Garantia e Troca com Protocolo</div>
+              <h3>Comprovante enviado na hora pelo chat</h3>
+              <p>
+                Com o modelo, número de série e nota fiscal, acionamos sua garantia ou agendamos a coleta de troca enviando seu protocolo imediatamente na conversa.
+              </p>
+            </div>
+            <div class="bento-media-bottom">
+              <img
+                src="./assets/pos-venda-garantia.svg"
+                alt="Resumo de garantia confirmada e protocolo de atendimento EletroLar"
+                loading="lazy"
+              />
+            </div>
+          </article>
+
+          <!-- Bento Cell 3: Span 4 -->
+          <article class="bento-item bento-span-4 bento-surface">
+            <div class="bento-content">
+              <div class="bento-step-pill">03 • Atendimento Humano</div>
+              <h3>Nossa equipe recebe seu histórico sem você repetir nada</h3>
+              <p>
+                Quando precisar falar com um especialista, transferimos sua conversa com todas as informações já preenchidas na tela do atendente:
+              </p>
+              <div class="context-tags" aria-label="Informações encaminhadas ao consultor">
+                <code>Modelo e número de série</code>
+                <code>Nota fiscal da compra</code>
+                <code>Sua cidade ou CEP</code>
+                <code>Protocolo do pedido</code>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bento Cell 4: Span 4 -->
+          <article class="bento-item bento-span-4 bento-warm">
+            <div class="bento-content">
+              <div class="bento-step-pill">Presença Nacional</div>
+              <h3>Postos autorizados nas principais regiões</h3>
+              <ul class="city-list">
+                <li>
+                  <span>São Paulo e Osasco, SP</span>
+                  <strong>3 unidades</strong>
+                </li>
+                <li>
+                  <span>Campinas, SP</span>
+                  <strong>1 unidade</strong>
+                </li>
+                <li>
+                  <span>Salvador e Lauro, BA</span>
+                  <strong>2 unidades</strong>
+                </li>
+                <li>
+                  <span>Feira de Santana, BA</span>
+                  <strong>1 unidade</strong>
+                </li>
+                <li>
+                  <span>Rio de Janeiro e BH</span>
+                  <strong>2 unidades</strong>
+                </li>
+                <li>
+                  <span>Curitiba, POA e Brasília</span>
+                  <strong>3 unidades</strong>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Bento Cell 5: Span 4 -->
+          <article class="bento-item bento-span-4 bento-surface">
+            <div class="bento-content">
+              <div class="bento-step-pill">Cuidado Integral</div>
+              <h3>Cobertura mesmo onde não há posto local</h3>
+              <p>
+                Se a sua cidade ainda não tiver uma assistência física credenciada, nossa equipe providencia a coleta domiciliar gratuita para você.
+              </p>
+              <button type="button" class="btn btn-outline btn-sm btn-open-chat" style="margin-top: auto;">
+                Conversar pelo Chat
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENTO MOSAIC DE LINHAS DE ELETRODOMÉSTICOS -->
+    <section id="especialidades-bento" class="section section-tinted" aria-labelledby="esp-heading">
+      <div class="container">
+        <div class="section-intro">
+          <div>
+            <span class="section-kicker">Peças Originais e Técnicos Certificados</span>
+            <h2 id="esp-heading">Linhas atendidas pela Rede EletroLar</h2>
+          </div>
+          <p class="section-lead">
+            Escolha a categoria do seu eletrodoméstico para ver as assistências autorizadas mais próximas.
+          </p>
+        </div>
+
+        <div class="specialty-bento">
+          <!-- Destaque 1: Lavadoras -->
+          <button type="button" class="spec-tile spec-featured" data-filter-esp="LAVADORA">
+            <img src="./assets/cat-lavadora.jpg" alt="Lavadoras de Roupas e Lava e Seca EletroLar" loading="lazy" />
+            <div class="spec-overlay">
+              <span class="spec-count">Visita Técnica Domiciliar</span>
+              <h3>Lavadoras &amp; Lava e Seca</h3>
+              <p>Suporte completo para lavadoras que pararam de funcionar, drenagem, centrifugação e painel eletrônico.</p>
+              <span class="spec-action">Ver autorizadas para Lavadoras →</span>
+            </div>
+          </button>
+
+          <!-- Destaque 2: Geladeiras -->
+          <button type="button" class="spec-tile spec-featured" data-filter-esp="GELADEIRA">
+            <img src="./assets/cat-geladeira.jpg" alt="Geladeiras FrostFree e Inverse EletroLar" loading="lazy" />
+            <div class="spec-overlay">
+              <span class="spec-count">Assistência em Domicílio</span>
+              <h3>Geladeiras &amp; Refrigeradores</h3>
+              <p>Atendimento para modelos FrostFree e Inverse, controle de temperatura, compressor e vedação.</p>
+              <span class="spec-action">Ver autorizadas para Geladeiras →</span>
+            </div>
+          </button>
+
+          <!-- Micro-ondas -->
+          <button type="button" class="spec-tile" data-filter-esp="MICROONDAS">
+            <img src="./assets/cat-microondas.jpg" alt="Fornos de Micro-ondas EletroLar" loading="lazy" />
+            <div class="spec-overlay">
+              <span class="spec-count">12 unidades</span>
+              <h3>Micro-ondas &amp; Fornos</h3>
+              <p>Reparo seguro de aquecimento, painel digital e prato giratório.</p>
+              <span class="spec-action">Ver autorizadas →</span>
+            </div>
+          </button>
+
+          <!-- Fogões -->
+          <button type="button" class="spec-tile" data-filter-esp="FOGAO">
+            <img src="./assets/cat-fogao.jpg" alt="Fogões e Cooktops EletroLar" loading="lazy" />
+            <div class="spec-overlay">
+              <span class="spec-count">11 unidades</span>
+              <h3>Fogões &amp; Cooktops</h3>
+              <p>Manutenção de mesa de vidro temperado, acendimento automático e forno.</p>
+              <span class="spec-action">Ver autorizadas →</span>
+            </div>
+          </button>
+
+          <!-- Ar-Condicionado -->
+          <button type="button" class="spec-tile" data-filter-esp="AR_CONDICIONADO">
+            <img src="./assets/cat-ar-condicionado.jpg" alt="Ar-Condicionado Split Dual Inverter EletroLar" loading="lazy" />
+            <div class="spec-overlay">
+              <span class="spec-count">9 unidades</span>
+              <h3>Ar-Condicionado Split</h3>
+              <p>Suporte especializado para linha Dual Inverter e climatização.</p>
+              <span class="spec-action">Ver autorizadas →</span>
+            </div>
+          </button>
+
+          <!-- Atalhos de Garantia & Troca -->
+          <div class="spec-split-col">
+            <button type="button" class="spec-tile-compact" data-chat-trigger="Minha máquina de lavar parou de funcionar e quero acionar a garantia">
+              <div>
+                <span class="spec-count-inline">Garantia de 12 Meses</span>
+                <h3>Acionar Garantia</h3>
+                <p>Abra seu chamado informando modelo, série e nota fiscal.</p>
+              </div>
+              <span class="spec-arrow" aria-hidden="true">→</span>
+            </button>
+
+            <button type="button" class="spec-tile-compact" data-chat-trigger="Quero solicitar a troca ou devolução de um produto">
+              <div>
+                <span class="spec-count-inline">Até 7 Dias da Entrega</span>
+                <h3>Troca ou Devolução</h3>
+                <p>Solicite a coleta domiciliar e receba seu protocolo no chat.</p>
+              </div>
+              <span class="spec-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIRETÓRIO INTERATIVO DE ASSISTÊNCIAS TÉCNICAS AUTORIZADAS -->
+    <section id="diretorio-assistencias" class="section" aria-labelledby="dir-heading">
+      <div class="container">
+        <div class="section-intro">
+          <div>
+            <span class="section-kicker">Busca por CEP ou Cidade</span>
+            <h2 id="dir-heading">Encontre a Assistência Autorizada mais próxima</h2>
+          </div>
+          <p class="section-lead">
+            Filtre por produto, cidade ou digite seu CEP para ver endereço, telefone e horário de funcionamento.
+          </p>
+        </div>
+
+        <form id="form-filtro-guia" class="directory-controls" aria-label="Filtrar assistências técnicas por produto, cidade ou CEP">
+          <div class="control-field">
+            <label for="select-especialidade">Produto</label>
+            <select id="select-especialidade" name="especialidade">
+              <option value="">Todos os produtos</option>
+              <option value="LAVADORA">Lavadoras &amp; Lava e Seca</option>
+              <option value="GELADEIRA">Geladeiras &amp; Refrigeradores</option>
+              <option value="MICROONDAS">Fornos de Micro-ondas</option>
+              <option value="FOGAO">Fogões &amp; Cooktops</option>
+              <option value="AR_CONDICIONADO">Ar-Condicionado Split</option>
+            </select>
+          </div>
+
+          <div class="control-field">
+            <label for="select-cidade">Cidade</label>
+            <select id="select-cidade" name="cidade">
+              <option value="">Todas as cidades</option>
+              <option value="São Paulo">São Paulo — SP</option>
+              <option value="Osasco">Osasco — SP</option>
+              <option value="Campinas">Campinas — SP</option>
+              <option value="Salvador">Salvador — BA</option>
+              <option value="Lauro de Freitas">Lauro de Freitas — BA</option>
+              <option value="Feira de Santana">Feira de Santana — BA</option>
+              <option value="Rio de Janeiro">Rio de Janeiro — RJ</option>
+              <option value="Belo Horizonte">Belo Horizonte — MG</option>
+              <option value="Curitiba">Curitiba — PR</option>
+              <option value="Porto Alegre">Porto Alegre — RS</option>
+              <option value="Brasília">Brasília — DF</option>
+            </select>
+          </div>
+
+          <div class="control-field">
+            <label for="input-cep">Ou digite seu CEP</label>
+            <input
+              type="text"
+              id="input-cep"
+              name="cep"
+              placeholder="Ex.: 01310-200"
+              maxlength="9"
+              autocomplete="postal-code"
+            />
+          </div>
+
+          <div class="control-actions">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+            <button type="button" id="btn-limpar-filtro" class="btn btn-ghost">Limpar</button>
+          </div>
+        </form>
+
+        <div id="status-filtro" class="directory-count" role="status" aria-live="polite"></div>
+
+        <div id="lista-assistencias" class="assistencias-bento-list" aria-label="Lista de assistências técnicas autorizadas">
+          <!-- Renderizado via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CANAL DE VOZ ACESSÍVEL -->
+    <section id="canal-voz" class="section section-tinted" aria-labelledby="voz-heading">
+      <div class="container">
+        <div class="voice-bento-card">
+          <div class="voice-copy">
+            <span class="section-kicker">Atendimento por Voz</span>
+            <h2 id="voz-heading">Prefere falar por telefone com toda a tranquilidade?</h2>
+            <p class="voice-lead">
+              Nosso atendimento por voz foi pensado para quem prefere conversar sem pressa e sem menus complicados. Basta dizer o que precisa e conduzimos você passo a passo.
+            </p>
+
+            <div class="voice-number-box" role="region" aria-label="Telefone da Central de Pós-Venda EletroLar">
+              <div class="vn-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </div>
+              <div>
+                <span class="vn-caption">Central EletroLar de Pós-Venda (Ligação Gratuita)</span>
+                <strong class="vn-digits">0800 770 3003 <span class="vn-sub">• Atendimento 24 horas</span></strong>
+              </div>
+            </div>
+
+            <div class="voice-pillars">
+              <div class="vp-item">
+                <strong>Uma pergunta por vez</strong>
+                <span>Diálogo calmo para você anotar endereços e protocolos com tranquilidade.</span>
+              </div>
+              <div class="vp-item">
+                <strong>Endereços ditos com clareza</strong>
+                <span>Telefone e horário da autorizada informados de forma pausada.</span>
+              </div>
+              <div class="vp-item">
+                <strong>Especialista sempre disponível</strong>
+                <span>Basta pedir para falar com um atendente a qualquer momento.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="voice-visual">
+            <img
+              src="./assets/cliente-voz-webrtc-eletrolar.jpg"
+              alt="Cliente em casa na cozinha moderna conversando confortavelmente ao telefone e anotando o protocolo de atendimento"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO DE FAQ ENXUTA -->
+    <section id="faq-chat" class="section" aria-labelledby="faq-heading">
+      <div class="container faq-layout">
+        <div class="faq-sidebar">
+          <span class="section-kicker">Tire suas dúvidas</span>
+          <h2 id="faq-heading">Perguntas frequentes sobre o Pós-Venda</h2>
+          <p>
+            Veja como é simples acionar a garantia, localizar uma autorizada ou pedir a troca do seu produto.
+          </p>
+          <div class="faq-cta-card">
+            <strong>Precisa de ajuda agora?</strong>
+            <p>Nosso chat está disponível 24 horas para atender você.</p>
+            <button type="button" class="btn btn-primary btn-open-chat" data-action="open-chat">
+              Iniciar Atendimento no Chat
+            </button>
+          </div>
+        </div>
+
+        <div class="faq-accordion">
+          <details class="faq-item" open>
+            <summary>
+              <span>O que preciso ter em mãos para acionar a garantia de um produto com defeito?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Tenha em mãos o <strong>modelo do aparelho</strong>, o <strong>número de série</strong> (presente na etiqueta traseira ou lateral) e o <strong>número da Nota Fiscal</strong>. Com esses dados, abrimos seu atendimento de garantia na hora pelo chat.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>Como localizo a assistência técnica autorizada mais próxima da minha casa?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Basta informar o seu <strong>CEP</strong> ou o nome da sua <strong>cidade</strong> no buscador desta página ou diretamente no chat para receber o endereço completo, telefone e horário de funcionamento.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>Qual o prazo para solicitar a troca ou devolução de um eletrodoméstico?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Você pode solicitar a troca ou devolução em até <strong>7 dias corridos</strong> após o recebimento. Informe o número da Nota Fiscal, o produto e o motivo no chat para receber seu protocolo e agendar a coleta em domicílio.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>Posso falar com um atendente humano? Vou precisar repetir as informações?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Sim! Basta digitar <strong>"quero falar com um atendente"</strong>. Transferimos sua conversa imediatamente e nossa equipe já recebe na tela tudo o que você informou no chat.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ COM DISCLAIMER DISCRETO -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <a href="#" class="footer-brand-link" aria-label="EletroLar Varejo – Início">
+            <img src="./assets/logo-eletrolar-footer.svg" alt="EletroLar — Pós-Venda &amp; Suporte Oficial" class="footer-logo-img" />
+          </a>
+          <p class="footer-desc">
+            Central de Pós-Venda e Suporte Técnico de Eletrodomésticos com foco em agilidade, clareza e respeito ao consumidor.
+          </p>
+        </div>
+
+        <div class="footer-links-col">
+          <strong>Principais Regiões Atendidas</strong>
+          <span>São Paulo • Osasco • Campinas • Salvador</span>
+          <span>Lauro de Freitas • Feira de Santana • RJ • BH • Curitiba</span>
+        </div>
+
+        <div class="footer-links-col">
+          <strong>Canais de Atendimento</strong>
+          <span>Chat Online 24h (nesta página)</span>
+          <span>Central de Voz: 0800 770 3003</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-disclaimer-discreet">
+          Projeto acadêmico e portfólio técnico de estudos em Arquitetura Cloud AWS, Amazon Connect e Serverless (Case 3 — Varejo: Pós-venda e Suporte de Eletrodomésticos | Escola da Nuvem). Ambiente de simulação: empresa (EletroLar Varejo), notas fiscais, números de série, endereços e protocolos são 100% fictícios.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTÃO FLUTUANTE LOCAL OCULTADO: EXIBE EXCLUSIVAMENTE O BOTÃO OFICIAL DO AMAZON CONNECT QUANDO INJETADO -->
+  <button
+    type="button"
+    id="floating-chat-btn"
+    class="chat-fab btn-open-chat"
+    data-action="open-chat"
+    hidden
+    style="display: none !important;"
+    aria-label="Abrir chat de atendimento online"
+  >
+    <span class="chat-fab-icon" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+      </svg>
+      <span class="chat-fab-dot"></span>
+    </span>
+    <span class="chat-fab-text">
+      <strong>Chat Online</strong>
+      <small>Pós-Venda</small>
+    </span>
+  </button>
+
+  <!-- DRAWER DE CHAT (Exibido quando o snippet da instância ainda não foi injetado) -->
+  <div id="chat-preview-modal" class="chat-drawer" role="dialog" aria-modal="true" aria-labelledby="chat-modal-title" hidden>
+    <div class="chat-drawer-header">
+      <div class="cd-title">
+        <span class="cd-online-dot" aria-hidden="true"></span>
+        <div>
+          <h2 id="chat-modal-title">Atendimento EletroLar</h2>
+          <small>Pós-Venda e Suporte • Online agora</small>
+        </div>
+      </div>
+      <button type="button" id="btn-close-modal" class="cd-close" aria-label="Fechar janela de chat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="chat-messages" class="chat-drawer-messages" aria-live="polite">
+      <div class="chat-msg bot">
+        Olá! Bem-vindo ao Pós-Venda da <strong>EletroLar Varejo</strong>.<br /><br />
+        Posso ajudar você a acionar a garantia de um produto com defeito, localizar uma assistência técnica autorizada perto do seu CEP ou solicitar troca e devolução. Como posso ajudar hoje?
+      </div>
+    </div>
+
+    <div class="chat-drawer-suggestions" aria-label="Sugestões rápidas">
+      <button type="button" class="quick-reply-btn" data-utterance="Minha máquina de lavar Lavadora 12kg série EL-LAV-2026-8841 nota NF-100201 parou de funcionar">Defeito na lavadora</button>
+      <button type="button" class="quick-reply-btn" data-utterance="Buscar assistência autorizada no CEP 01310-200">Autorizada CEP 01310-200</button>
+      <button type="button" class="quick-reply-btn" data-utterance="Quero trocar o Micro-ondas 32L da nota fiscal NF-100203 por arrependimento">Solicitar troca</button>
+      <button type="button" class="quick-reply-btn" data-utterance="Quero falar com um atendente">Falar com Atendente</button>
+    </div>
+
+    <form id="chat-preview-form" class="chat-drawer-input">
+      <label for="chat-input" class="sr-only">Digite sua mensagem</label>
+      <input
+        type="text"
+        id="chat-input"
+        placeholder="Digite o que precisa ou seu CEP..."
+        autocomplete="off"
+        required
+      />
+      <button type="submit" class="btn btn-primary btn-send-msg">Enviar</button>
+    </form>
+  </div>
+
+  <!-- AMAZON_CONNECT_WIDGET_PLACEHOLDER -->
+  <script src="./app.js" defer></script>
+</body>
+</html>

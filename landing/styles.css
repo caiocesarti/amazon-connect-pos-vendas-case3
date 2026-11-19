@@ -1,0 +1,1940 @@
+/* ==========================================================================
+   EletroLar Varejo — Bento Box UI & Design Editorial Acessível (Case 3)
+   Tipografia: Instrument Serif (Display) + Plus Jakarta Sans (UI) + JetBrains Mono
+   Acessibilidade: Base >= 18px, Alto Contraste, Navegação por Teclado
+   ========================================================================== */
+
+:root {
+  --font-size-base: 18px;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Paleta Editorial Varejo & Tecnologia (Azul Royal + Marinho Profundo + Celeste) */
+  --bg-canvas: #f8fafc;
+  --bg-tinted: #eef2f7;
+  --bg-surface: #ffffff;
+  --bg-forest: #0b2545;
+  --bg-warm: #eff6ff;
+  --bg-utility: #061529;
+
+  --text-main: #0f172a;
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --text-on-forest: #f8fafc;
+
+  --accent-primary: #1d4ed8;
+  --accent-primary-hover: #1e40af;
+  --accent-emerald: #2563eb;
+  --accent-amber: #0284c7;
+  --accent-pill-bg: #dbeafe;
+  --accent-pill-text: #1e40af;
+
+  --border-subtle: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --focus-outline: #2563eb;
+
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+  --radius-xl: 32px;
+
+  --shadow-bento: 0 4px 20px -2px rgba(11, 37, 69, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 18px 38px -6px rgba(11, 37, 69, 0.14);
+}
+
+html[data-theme="dark"] {
+  --bg-canvas: #060b14;
+  --bg-tinted: #0b1324;
+  --bg-surface: #111c33;
+  --bg-forest: #0f294d;
+  --bg-warm: #15233d;
+  --bg-utility: #03070e;
+
+  --text-main: #f8fafc;
+  --text-body: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-on-forest: #f8fafc;
+
+  --accent-primary: #60a5fa;
+  --accent-primary-hover: #93c5fd;
+  --accent-emerald: #38bdf8;
+  --accent-amber: #38bdf8;
+  --accent-pill-bg: #1e3a5f;
+  --accent-pill-text: #93c5fd;
+
+  --border-subtle: #1e293b;
+  --border-strong: #334155;
+  --focus-outline: #38bdf8;
+
+  --shadow-bento: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --shadow-hover: 0 18px 42px rgba(0, 0, 0, 0.7);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--font-size-base);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-canvas);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-outline);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: 1rem;
+  background: var(--focus-outline);
+  color: #000;
+  font-weight: 700;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  z-index: 9999;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ==========================================================================
+   1. BARRA UTILITÁRIA E ACESSIBILIDADE
+   ========================================================================== */
+.utility-bar {
+  background-color: var(--bg-utility);
+  color: #e2e8f0;
+  font-size: 0.82rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.utility-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.env-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 500;
+}
+
+.status-led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #34d399;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.22);
+  flex-shrink: 0;
+}
+
+.a11y-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.a11y-caption {
+  color: #94a3b8;
+  margin-right: 0.25rem;
+  font-weight: 600;
+}
+
+.a11y-chip {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 7px;
+  padding: 0.25rem 0.6rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.a11y-chip:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.a11y-sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.18);
+  margin: 0 0.25rem;
+}
+
+/* ==========================================================================
+   2. NAVBAR PRINCIPAL
+   ========================================================================== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background-color: color-mix(in srgb, var(--bg-canvas) 90%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 82px;
+  gap: 1.25rem;
+  flex-wrap: nowrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text-main);
+  flex-shrink: 0;
+}
+
+.brand-logo-img {
+  height: 48px;
+  width: auto;
+  max-width: 245px;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background-color: var(--bg-forest);
+  color: #34d399;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brand-title {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+.brand-tag {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-left: auto;
+  margin-right: 1.25rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-body);
+  font-weight: 600;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent-primary);
+}
+
+.nav-cta {
+  margin-left: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav-cta-text-short {
+  display: none;
+}
+
+/* Botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  min-height: 50px;
+  padding: 0.7rem 1.35rem;
+  border-radius: 12px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-lg {
+  min-height: 56px;
+  padding: 0.85rem 1.6rem;
+  font-size: 1rem;
+  border-radius: 14px;
+}
+
+.btn-sm {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  font-size: 0.88rem;
+}
+
+.btn-primary {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .btn-primary {
+  color: #062019;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-primary-hover);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text-main);
+  border-color: var(--border-strong);
+}
+
+.btn-ghost:hover {
+  background-color: var(--bg-tinted);
+}
+
+.btn-outline {
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  border-color: var(--border-strong);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent-primary);
+}
+
+/* ==========================================================================
+   3. HERO EDITORIAL + MINI BENTO
+   ========================================================================== */
+.hero-section {
+  padding: 3.5rem 0 4rem;
+}
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 2.5rem;
+  align-items: stretch;
+}
+
+.hero-editorial {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+
+.eyebrow-pill {
+  background-color: var(--accent-pill-bg);
+  color: var(--accent-pill-text);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+}
+
+.hero-editorial h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(2.15rem, 3.8vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+
+.hero-editorial h1 em {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.12em;
+  color: var(--accent-primary);
+}
+
+.hero-sub {
+  font-size: 1.08rem;
+  color: var(--text-body);
+  max-width: 58ch;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.quick-prompts {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.quick-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-right: 0.25rem;
+}
+
+.prompt-tag {
+  background-color: var(--bg-surface);
+  color: var(--text-body);
+  border: 1px solid var(--border-subtle);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.prompt-tag:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-pill-bg);
+  color: var(--accent-pill-text);
+}
+
+/* Mosaico Bento Direito do Hero */
+.hero-bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 270px auto;
+  gap: 1rem;
+}
+
+.hb-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-bento);
+}
+
+.hb-photo-main {
+  grid-column: 1 / -1;
+  position: relative;
+}
+
+.hb-photo-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hb-photo-overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(6, 21, 41, 0.94), rgba(6, 21, 41, 0));
+  color: #ffffff;
+}
+
+.hb-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: rgba(56, 189, 248, 0.24);
+  color: #7dd3fc;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  margin-bottom: 0.4rem;
+}
+
+.hb-photo-overlay p {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #f1f5f9;
+}
+
+.hb-metric-dark {
+  background-color: var(--bg-forest);
+  color: var(--text-on-forest);
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hb-metric-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #7dd3fc;
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+.hb-metric-value {
+  font-family: var(--font-serif);
+  font-size: 2.3rem;
+  line-height: 1;
+  margin: 0.4rem 0;
+}
+
+.hb-metric-desc {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+}
+
+.hb-protocol-preview {
+  background-color: var(--bg-surface);
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hb-proto-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.mono-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: var(--bg-tinted);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+
+.proto-status {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  background: rgba(37, 99, 235, 0.14);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+
+.proto-doc {
+  font-weight: 800;
+  font-size: 0.98rem;
+  margin-top: 0.5rem;
+}
+
+.proto-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   4. BENTO GRID PRINCIPAL (12 COLUNAS ASSIMÉTRICAS)
+   ========================================================================== */
+.section {
+  padding: 4.5rem 0;
+}
+
+.section-tinted {
+  background-color: var(--bg-tinted);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.section-kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-amber);
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+}
+
+.section-intro h2 {
+  font-size: clamp(1.75rem, 2.8vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.section-lead {
+  color: var(--text-body);
+  max-width: 46ch;
+  font-size: 1rem;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.25rem;
+}
+
+.bento-item {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-bento);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bento-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.bento-span-7 {
+  grid-column: span 7;
+}
+
+.bento-span-5 {
+  grid-column: span 5;
+}
+
+.bento-span-4 {
+  grid-column: span 4;
+}
+
+.bento-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  height: 100%;
+}
+
+.bento-step-pill {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.28rem 0.7rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.bento-surface {
+  background-color: var(--bg-surface);
+}
+
+.bento-surface .bento-step-pill {
+  background-color: var(--accent-pill-bg);
+  color: var(--accent-pill-text);
+}
+
+.bento-warm {
+  background-color: var(--bg-warm);
+}
+
+.bento-warm .bento-step-pill {
+  background-color: rgba(29, 78, 216, 0.12);
+  color: var(--accent-primary);
+}
+
+.bento-forest {
+  background-color: var(--bg-forest);
+  color: var(--text-on-forest);
+}
+
+.bento-forest p {
+  color: #dbeafe;
+}
+
+.bento-item h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.bento-item p {
+  font-size: 0.96rem;
+}
+
+/* Tradutor de Fala Popular dentro da Bento Cell 1 */
+.translation-pills {
+  margin-top: auto;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.trans-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  gap: 0.5rem;
+}
+
+.trans-said {
+  font-style: italic;
+  color: #f8fafc;
+}
+
+.trans-arrow {
+  color: #38bdf8;
+  font-family: var(--font-mono);
+}
+
+.trans-resolved {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: rgba(56, 189, 248, 0.22);
+  color: #7dd3fc;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+}
+
+/* Bento Photo Split */
+.bento-photo-split {
+  background-color: var(--bg-surface);
+}
+
+.bento-Photo-split .bento-step-pill {
+  background-color: var(--accent-pill-bg);
+  color: var(--accent-pill-text);
+}
+
+.bento-media-bottom {
+  height: 190px;
+  overflow: hidden;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.bento-media-bottom img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Tags de Contexto gm_* */
+.context-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+.context-tags code {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  background-color: var(--bg-tinted);
+  color: var(--accent-primary);
+  border: 1px solid var(--border-subtle);
+  padding: 0.25rem 0.55rem;
+  border-radius: 6px;
+}
+
+/* Lista de Cidades no Bento */
+.city-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.city-list li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dashed var(--border-strong);
+}
+
+.city-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* ==========================================================================
+   5. BENTO MOSAIC DE ESPECIALIDADES
+   ========================================================================== */
+.specialty-bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.25rem;
+}
+
+.spec-tile {
+  grid-column: span 3;
+  position: relative;
+  height: 310px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  background: #000;
+  padding: 0;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.spec-tile.spec-featured {
+  grid-column: span 6;
+  height: 330px;
+}
+
+.spec-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.82;
+  transition: transform 0.35s ease, opacity 0.25s ease;
+}
+
+.spec-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.spec-tile:hover img {
+  transform: scale(1.04);
+  opacity: 0.68;
+}
+
+.spec-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 1.6rem;
+  background: linear-gradient(to top, rgba(6, 21, 41, 0.94) 15%, rgba(6, 21, 41, 0.15) 75%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+.spec-count {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: #7dd3fc;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.spec-overlay h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+
+.spec-overlay p {
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  max-width: 44ch;
+}
+
+.spec-action {
+  margin-top: 0.4rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #38bdf8;
+}
+
+.spec-split-col {
+  grid-column: span 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.spec-tile-compact {
+  flex: 1;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.spec-tile-compact:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+.spec-count-inline {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-amber);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.spec-tile-compact h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 0.2rem;
+}
+
+.spec-tile-compact p {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.spec-arrow {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  color: var(--accent-primary);
+}
+
+/* ==========================================================================
+   6. DIRETÓRIO INTERATIVO DE MÉDICOS
+   ========================================================================== */
+.directory-controls {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 1.1rem;
+  align-items: end;
+  box-shadow: var(--shadow-bento);
+  margin-bottom: 1.25rem;
+}
+
+.control-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.control-field label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-body);
+}
+
+.control-field select,
+.control-field input {
+  font-family: inherit;
+  font-size: 0.96rem;
+  font-weight: 600;
+  min-height: 50px;
+  padding: 0.6rem 0.95rem;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-strong);
+  background-color: var(--bg-canvas);
+  color: var(--text-main);
+}
+
+.control-actions {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.directory-count {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.assistencias-bento-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.25rem;
+}
+
+.assistencia-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-bento);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: border-color 0.15s ease;
+}
+
+.assistencia-card:hover {
+  border-color: var(--accent-primary);
+}
+
+.assistencia-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.assistencia-badge {
+  background-color: var(--accent-pill-bg);
+  color: var(--accent-pill-text);
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0.22rem 0.65rem;
+  border-radius: 6px;
+}
+
+.assistencia-id {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background-color: var(--bg-tinted);
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+}
+
+.assistencia-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0.45rem 0 0.35rem;
+}
+
+.assistencia-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.88rem;
+  color: var(--text-body);
+}
+
+.assistencia-slots {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background-color: var(--bg-tinted);
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   7. CANAL DE VOZ E WEBRTC
+   ========================================================================== */
+.voice-bento-card {
+  background-color: var(--bg-forest);
+  color: var(--text-on-forest);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  box-shadow: var(--shadow-hover);
+}
+
+.voice-copy {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.voice-copy .section-kicker {
+  color: #7dd3fc;
+}
+
+.voice-copy h2 {
+  font-size: clamp(1.7rem, 2.6vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.18;
+  margin-bottom: 1rem;
+}
+
+.voice-lead {
+  color: #dbeafe;
+  font-size: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.voice-number-box {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.35rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.vn-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(56, 189, 248, 0.22);
+  color: #7dd3fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.vn-caption {
+  display: block;
+  font-size: 0.8rem;
+  color: #bae6fd;
+}
+
+.vn-digits {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  color: #ffffff;
+}
+
+.vn-sub {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.voice-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.vp-item strong {
+  display: block;
+  font-size: 0.9rem;
+  color: #7dd3fc;
+  margin-bottom: 0.2rem;
+}
+
+.vp-item span {
+  font-size: 0.82rem;
+  color: #e2e8f0;
+}
+
+.voice-visual img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================================================
+   8. FAQ DE USO DO CHAT (ACCORDION)
+   ========================================================================== */
+.faq-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.faq-sidebar h2 {
+  font-size: clamp(1.65rem, 2.5vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.18;
+  margin-bottom: 0.85rem;
+}
+
+.faq-sidebar p {
+  color: var(--text-body);
+  margin-bottom: 1.5rem;
+}
+
+.faq-cta-card {
+  background-color: var(--bg-warm);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.faq-cta-card p {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.faq-item {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+
+.faq-item[open] {
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-bento);
+}
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.25rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.02rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--bg-tinted);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background-color: var(--text-main);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease;
+}
+
+.faq-icon::before {
+  width: 12px;
+  height: 2px;
+}
+
+.faq-icon::after {
+  width: 2px;
+  height: 12px;
+}
+
+.faq-item[open] .faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 0;
+}
+
+.faq-answer {
+  padding: 0 1.5rem 1.35rem;
+  color: var(--text-body);
+  font-size: 0.95rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+}
+
+.faq-answer code {
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  background-color: var(--bg-tinted);
+  padding: 0.15rem 0.45rem;
+  border-radius: 5px;
+}
+
+/* ==========================================================================
+   9. RODAPÉ DA CLÍNICA E DISCLAIMER DISCRETO
+   ========================================================================== */
+.footer {
+  background-color: var(--bg-utility);
+  color: #cbd5e1;
+  padding: 3.5rem 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 2.5rem;
+  padding-bottom: 2.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-brand-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.footer-logo-img {
+  height: 48px;
+  width: auto;
+  max-width: 245px;
+  object-fit: contain;
+  display: block;
+  opacity: 0.98;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footer-logo-img:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.footer-desc {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  max-width: 42ch;
+}
+
+.footer-links-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  color: #94a3b8;
+}
+
+.footer-links-col strong {
+  color: #f8fafc;
+  font-size: 0.92rem;
+  margin-bottom: 0.25rem;
+}
+
+.footer-bottom {
+  padding-top: 1.5rem;
+  text-align: center;
+}
+
+.footer-disclaimer-discreet {
+  font-size: 0.78rem;
+  color: #64748b;
+  max-width: 85ch;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.footer-disclaimer-discreet strong {
+  color: #94a3b8;
+}
+
+/* ==========================================================================
+   10. BOTÃO FLUTUANTE (FAB) E DRAWER DO CHAT NO CANTO INFERIOR DIREITO
+   ========================================================================== */
+
+/* Animação moderna de pulso com onda concêntrica azul celeste e respiração sutil */
+@keyframes modernChatPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.8),
+                0 10px 28px rgba(6, 21, 41, 0.45);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 16px rgba(56, 189, 248, 0),
+                0 14px 34px rgba(6, 21, 41, 0.55);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0),
+                0 10px 28px rgba(6, 21, 41, 0.45);
+  }
+}
+
+/* Flutuação suave e elegante */
+@keyframes modernFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Efeito de radar ping no indicador verde de online */
+@keyframes radarPing {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.85);
+  }
+  65% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   BOTÃO FLUTUANTE DE CHAT (FAB SIMULADO & BOTÃO OFICIAL AMAZON CONNECT)
+   Arquitetura limpa e desacoplada: dimensões explícitas em pixels para evitar
+   colapsos de SVG por porcentagem cíclica em containers flexíveis.
+   ----------------------------------------------------------------------------- */
+
+/* 1. Botão Fallback Local (.chat-fab / #floating-chat-btn) - Desativado para usar exclusivamente o botão oficial menor do Connect */
+.chat-fab,
+#floating-chat-btn {
+  display: none !important;
+}
+
+/* 2. Botão Oficial do Amazon Connect (#amazon-connect-open-widget-button) - DESKTOP */
+#amazon-connect-open-widget-button,
+#amazon-connect-close-widget-button,
+button[id*="amazon-connect-open"],
+button[id*="amazon-connect-close"] {
+  position: fixed !important;
+  bottom: 1.5rem !important;
+  right: 1.5rem !important;
+  z-index: 999999 !important;
+  width: 60px !important;
+  height: 60px !important;
+  min-width: 60px !important;
+  min-height: 60px !important;
+  max-width: 60px !important;
+  max-height: 60px !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  background: var(--bg-forest) !important;
+  border: 2.5px solid rgba(56, 189, 248, 0.6) !important;
+  cursor: pointer !important;
+  overflow: hidden !important;
+  transform-origin: center center !important;
+  animation: modernChatPulse 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1) !important;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease !important;
+}
+
+#amazon-connect-open-widget-button:hover,
+button[id*="amazon-connect-open"]:hover {
+  transform: scale(1.08) translateY(-3px) !important;
+  animation-play-state: paused !important;
+  box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.45),
+              0 18px 38px rgba(6, 21, 41, 0.55) !important;
+}
+
+/* Estado de Chat Aberto (Botão Fechar) */
+#amazon-connect-close-widget-button,
+button[id*="amazon-connect-close"] {
+  animation: none !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Ícone SVG interno do Amazon Connect (Desktop) - 32px garantidos e centralizados */
+#amazon-connect-open-widget-button svg,
+#amazon-connect-close-widget-button svg,
+button[id*="amazon-connect-open"] svg,
+button[id*="amazon-connect-close"] svg {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+  display: block !important;
+  margin: auto !important;
+  transform: none !important;
+  fill: #ffffff !important;
+  color: #ffffff !important;
+  pointer-events: none !important;
+}
+
+.chat-fab-icon {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #10b981;
+  color: #052e22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chat-fab-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: #4ade80;
+  border: 2px solid var(--bg-forest);
+  animation: radarPing 2.2s infinite ease-out;
+}
+
+.chat-fab-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.18;
+}
+
+.chat-fab-text strong {
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.chat-fab-text small {
+  font-size: 0.76rem;
+  color: #a7f3d0;
+  font-weight: 600;
+}
+
+.chat-drawer {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  width: 420px;
+  max-width: calc(100vw - 1.5rem);
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hover);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-drawer[hidden] {
+  display: none !important;
+}
+
+.chat-drawer-header {
+  background-color: var(--bg-forest);
+  color: #ffffff;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cd-title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.cd-title h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.cd-title small {
+  font-size: 0.75rem;
+  color: #bae6fd;
+}
+
+.cd-online-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #38bdf8;
+}
+
+.cd-close {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-drawer-messages {
+  padding: 1rem;
+  height: 310px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  background-color: var(--bg-canvas);
+}
+
+.chat-bubble,
+.chat-msg {
+  padding: 0.75rem 0.95rem;
+  border-radius: 13px;
+  font-size: 0.9rem;
+  max-width: 88%;
+}
+
+.chat-bubble.bot,
+.chat-msg.bot {
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+  align-self: flex-start;
+}
+
+.chat-bubble.user,
+.chat-msg.user {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  align-self: flex-end;
+}
+
+html[data-theme="dark"] .chat-bubble.user {
+  color: #062019;
+  font-weight: 600;
+}
+
+.chat-drawer-suggestions {
+  padding: 0.55rem 0.75rem;
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.quick-reply-btn {
+  white-space: nowrap;
+  background-color: var(--bg-tinted);
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.quick-reply-btn:hover {
+  border-color: var(--accent-primary);
+}
+
+.chat-drawer-input {
+  padding: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.chat-drawer-input input {
+  flex: 1;
+  min-height: 44px;
+  padding: 0.45rem 0.8rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border-strong);
+  background-color: var(--bg-canvas);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.btn-send-msg {
+  min-height: 44px;
+  padding: 0.45rem 1rem;
+}
+
+/* ==========================================================================
+   11. RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 1180px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-cta {
+    margin-left: auto;
+  }
+
+  .hero-layout,
+  .voice-bento-card,
+  .faq-layout,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-logo-img {
+    height: 34px;
+    max-width: 160px;
+  }
+
+  .bento-span-7,
+  .bento-span-5,
+  .bento-span-4 {
+    grid-column: span 12;
+  }
+
+  .spec-tile,
+  .spec-tile.spec-featured,
+  .spec-split-col {
+    grid-column: span 6;
+  }
+
+  .directory-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .navbar-inner {
+    min-height: 60px;
+    gap: 0.5rem;
+  }
+
+  .brand-logo-img {
+    height: 32px;
+    max-width: 130px;
+  }
+
+  .nav-cta .btn {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.82rem;
+    gap: 0.35rem;
+    white-space: nowrap;
+  }
+
+  .nav-cta .btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .hero-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .spec-tile,
+  .spec-tile.spec-featured,
+  .spec-split-col {
+    grid-column: span 12;
+  }
+
+  .voice-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  /* BOTÃO DE CHAT RIGOROSAMENTE FIXO NO CANTO INFERIOR DIREITO NO MOBILE */
+  .chat-fab,
+  #amazon-connect-open-widget-button,
+  #amazon-connect-close-widget-button,
+  button[id*="amazon-connect"] {
+    position: fixed !important;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px)) !important;
+    right: calc(1rem + env(safe-area-inset-right, 0px)) !important;
+    z-index: 99999 !important;
+    transform-origin: center center !important;
+    will-change: transform, box-shadow;
+  }
+
+  /* Botão oficial do Amazon Connect no Mobile - 58px com ícone de 30px fixo e nítido */
+  #amazon-connect-open-widget-button,
+  #amazon-connect-close-widget-button,
+  button[id*="amazon-connect-open"],
+  button[id*="amazon-connect-close"] {
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+    max-width: 58px !important;
+    max-height: 58px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  #amazon-connect-open-widget-button svg,
+  #amazon-connect-close-widget-button svg,
+  button[id*="amazon-connect-open"] svg,
+  button[id*="amazon-connect-close"] svg {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    max-width: 30px !important;
+    max-height: 30px !important;
+    display: block !important;
+    transform: none !important;
+    margin: auto !important;
+    fill: #ffffff !important;
+    color: #ffffff !important;
+    pointer-events: none !important;
+  }
+
+  .chat-fab {
+    padding: 0.55rem 0.95rem 0.55rem 0.65rem;
+    gap: 0.55rem;
+    box-shadow: 0 8px 24px rgba(7, 34, 27, 0.45);
+  }
+
+  .chat-fab-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .chat-fab-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .chat-fab-text strong {
+    font-size: 0.85rem;
+  }
+
+  .chat-fab-text small {
+    font-size: 0.70rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-cta-text-full {
+    display: none;
+  }
+
+  .nav-cta-text-short {
+    display: inline;
+  }
+
+  .brand-logo-img {
+    height: 28px;
+    max-width: 110px;
+  }
+
+  .nav-cta .btn {
+    padding: 0.38rem 0.65rem;
+    font-size: 0.78rem;
+    gap: 0.3rem;
+  }
+}

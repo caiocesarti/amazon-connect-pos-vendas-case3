@@ -1,0 +1,9 @@
+{
+  "name": "amazon-connect-pos-venda-case3",
+  "version": "1.0.0",
+  "description": "Central de Atendimento Omnichannel Pós-Venda EletroLar Varejo — Amazon Connect & GenAI (Case 3)",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/injetar_widget.js"
+  }
+}

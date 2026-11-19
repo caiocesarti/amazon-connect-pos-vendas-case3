@@ -1,0 +1,47 @@
+<!-- ==========================================================================
+  Exemplo de Snippet do Communications Widget — Amazon Connect (EletroLar Varejo)
+  ==========================================================================
+  INSTRUÇÕES DE SEGURANÇA (ZERO-LEAK):
+  1. NUNCA coloque IDs reais neste arquivo (ele é versionado no Git).
+  2. Copie este arquivo para `landing/widget-snippet.local.html` (que está no .gitignore):
+       cp landing/widget-snippet.example.html landing/widget-snippet.local.html
+  3. No console do Amazon Connect (Channels -> Communications widgets), copie o snippet
+     gerado e cole em `landing/widget-snippet.local.html`.
+  4. Execute `python scripts/injetar_widget.py` para injetar localmente ou via build na Vercel.
+=========================================================================== -->
+<script type="text/javascript">
+  (function(w, d, x, id){
+    s=d.createElement('script');
+    s.src='https://<INSTANCE_ALIAS>.my.connect.aws/connectwidget/static/amazon-connect-chat-interface-client.js';
+    s.async=1;
+    s.id=id;
+    d.getElementsByTagName('head')[0].appendChild(s);
+    w[x] =  w[x] || function() { (w[x].ac = w[x].ac || []).push(arguments) };
+  })(window, document, 'amazon_connect', '<WIDGET_SCRIPT_ID>');
+
+  amazon_connect('styles', {
+    iconType: 'CHAT_VOICE',
+    openChat: { color: '#ffffff', backgroundColor: '#1d4ed8' },
+    closeChat: { color: '#ffffff', backgroundColor: '#0b2545' }
+  });
+
+  amazon_connect('snippetId', '<WIDGET_SNIPPET_ID>');
+
+  amazon_connect('supportedMessagingContentTypes', [
+    'text/plain',
+    'text/markdown',
+    'application/vnd.amazonaws.connect.message.interactive',
+    'application/vnd.amazonaws.connect.message.interactive.response'
+  ]);
+
+  /* Define o nome de exibição do cliente no chat e no Agent Workspace / CCP v2 */
+  amazon_connect('customerDisplayName', function(callback) {
+    callback('Cliente EletroLar');
+  });
+
+  /* Envia atributos iniciais de contexto pv_* informando origem na Landing Page */
+  amazon_connect('customChatInitiateAttributes', {
+    pv_origem: 'landing',
+    pv_canal: 'CHAT'
+  });
+</script>

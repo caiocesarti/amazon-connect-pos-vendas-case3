@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 68" width="245" height="50" role="img" aria-label="EletroLar — Central de Pós-Venda e Suporte Técnico">
+  <defs>
+    <!-- Gradiente Principal do Emblema (Azul Royal -> Azul Marinho) -->
+    <linearGradient id="brandShield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="55%" stop-color="#1d4ed8" />
+      <stop offset="100%" stop-color="#0b2545" />
+    </linearGradient>
+
+    <!-- Gradiente de Luz / Energia (Azul Celeste -> Ciano) -->
+    <linearGradient id="brandCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7dd3fc" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <!-- Gradiente do Texto "Lar" -->
+    <linearGradient id="textAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1d4ed8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <!-- Sombra Suave do Ícone -->
+    <filter id="logoShadow" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0b2545" flood-opacity="0.22" />
+    </filter>
+  </defs>
+
+  <!-- ================= ÍCONE / EMBLEMA GEOMÉTRICO ================= -->
+  <g transform="translate(4, 4)" filter="url(#logoShadow)">
+    <!-- Base Squircle Moderna -->
+    <rect x="0" y="0" width="60" height="60" rx="16" fill="url(#brandShield)" />
+    <!-- Borda Interna Sutil de Brilho -->
+    <rect x="1" y="1" width="58" height="58" rx="15" fill="none" stroke="#60a5fa" stroke-opacity="0.35" stroke-width="1.2" />
+
+    <!-- Arco de Proteção / Telhado "Lar" Estilizado -->
+    <path d="M13 28 L30 13 L47 28" fill="none" stroke="url(#brandCyan)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Estrutura da Casa / Monograma "E" + Pulso Tecnológico -->
+    <path d="M18 27 V43 C18 45.2 19.8 47 22 47 H38 C40.2 47 42 45.2 42 43 V27" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Símbolo Central de Energia / Check de Garantia -->
+    <path d="M24.5 35.5 L28.5 39.5 L36.5 31" fill="none" stroke="#38bdf8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Ponto Luminoso de Conectividade -->
+    <circle cx="30" cy="22" r="2.4" fill="#7dd3fc" />
+  </g>
+
+  <!-- ================= TIPOGRAFIA CORPORATIVA ================= -->
+  <g transform="translate(78, 0)">
+    <!-- Wordmark Principal: EletroLar -->
+    <text x="0" y="37" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="29" font-weight="800" letter-spacing="-0.9" fill="#0b2545">
+      Eletro<tspan fill="url(#textAccent)">Lar</tspan>
+    </text>
+
+    <!-- Ponto de Destaque -->
+    <circle cx="137" cy="32" r="3.2" fill="#38bdf8" />
+
+    <!-- Subtítulo Institucional com Pill -->
+    <rect x="1" y="45" width="76" height="16" rx="4" fill="#dbeafe" />
+    <text x="39" y="56" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9.2" font-weight="700" letter-spacing="0.7" fill="#1e40af">
+      PÓS-VENDA
+    </text>
+
+    <text x="85" y="56" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.6" fill="#475569">
+      SUPORTE OFICIAL
+    </text>
+  </g>
+</svg>
